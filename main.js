@@ -4,6 +4,27 @@ var map = L.mapbox.map('map')
     .setView([46.8182, 8.2275], 8)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
+
+
+// Charger les données GeoJSON et ajouter des marqueurs
+fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data, {
+            onEachFeature: function (feature, layer) {
+                // Vous pouvez personnaliser cette partie pour ajouter des popups ou d'autres informations
+                if (feature.properties && feature.properties.name) {
+                    layer.bindPopup(feature.properties.name);
+                }
+            }
+        }).addTo(map);
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement du GeoJSON:', error);
+    });
+  
+
+/*
     $.ajax({
       url: 'test.json',
       type: 'GET',
@@ -32,7 +53,7 @@ var map = L.mapbox.map('map')
   });
 
 
-/*
+
 {
     "monuments": [
       {
