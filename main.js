@@ -1,11 +1,11 @@
-L.mapbox.accessToken = 'pk.eyJ1IjoieW90YW13ZSIsImEiOiJjbHA0MHA3bG0xYnc4Mmlxa3BzbnV1MG9kIn0.gDTM19hR_KXwh5PQkAzsjA';
+L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
 
 var map = L.mapbox.map('map')
     .setView([46.8182, 8.2275], 8)
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
     $.ajax({
-      url: 'districts-lakes.json',
+      url: 'test.json',
       type: 'GET',
       dataType: 'json',
       success: function (data) {
