@@ -1,3 +1,4 @@
+/*
 L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
 
 var map = L.mapbox.map('map')
@@ -22,7 +23,111 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
     .catch(error => {
         console.error('Erreur lors du chargement du GeoJSON:', error);
     });
+    */
+
+    
+    mapboxgl.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ';
+
+var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [8.2275, 46.8182],
+    zoom: 8
+});
+
+var markers = [];
+
+map.on('click', function (e) {
+    // Ajouter un marqueur
+    var marker = new mapboxgl.Marker()
+        .setLngLat(e.lngLat)
+        .addTo(map);
+    markers.push(marker);
+
+    // Mettre à jour le trajet
+    updateRoute();
+});
+
+function updateRoute() {
+    if (markers.length >= 2) {
+        // Récupérer les coordonnées des marqueurs
+        var coordinates = markers.map(marker => marker.getLngLat().toArray());
+
+        // Effectuer une requête au service Directions
+        var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + coordinates.join(';') +
+            '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+
+        fetch(directionsRequest)
+            .then(response => response.json())
+            .then(data => {
+                var route = data.routes[0].geometry;
+
+                // Supprimer le chemin existant s'il y en a un
+                if (map.getSource('route')) {
+                    map.getSource('route').setData(route);
+                } else {
+                    // Ajouter le chemin
+                    map.addSource('route', {
+                        type: 'geojson',
+                        data: route
+                    });
+
+                    map.addLayer({
+                        id: 'route',
+                        type: 'line',
+                        source: 'route',
+                        layout: {
+                            'line-join': 'round',
+                            'line-cap': 'round'
+                        },
+                        paint: {
+                            'line-color': '#3887be',
+                            'line-width': 5,
+                            'line-opacity': 0.75
+                        }
+                    });
+                }
+            })
+            .catch(error => console.error('Erreur lors de la requête Directions:', error));
+    }
+}
+
   
+   
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
     $.ajax({
@@ -51,7 +156,6 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
           console.error('Erreur lors du chargement des données JSON : ', error);
       }
   });
-
 
 
 {
