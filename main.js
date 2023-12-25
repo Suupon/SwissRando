@@ -9,7 +9,6 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
 
       var coordinates = []; // Liste des coordonnées des points cliqués
 
-<<<<<<< HEAD
       fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
     .then(response => response.json())
     .then(data => {
@@ -18,16 +17,6 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
             map.loadImage('Map-Marker-Download-Free-PNG.png', function(error, image) {
                 if (error) throw error;
                 map.addImage('custom-marker', image);
-=======
-      // Charger les données GeoJSON et ajouter des marqueurs
-      fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
-          .then(response => response.json())
-          .then(data => {
-              map.on('click', function(e) {
-                  var features = map.queryRenderedFeatures(e.point, {
-                      layers: ['markers']
-                  });
->>>>>>> 2c0bf9a (bouton retour)
 
                 // Ajouter les données GeoJSON comme une source
                 map.addSource('markers', {
@@ -130,7 +119,7 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
 
 
       // Ajouter un gestionnaire d'événement pour le bouton "Effacer le dernier chemin"
-      document.getElementById('clearRouteBtn').addEventListener('click', clearLastRoute);
+     // document.getElementById('clearRouteBtn').addEventListener('click', clearLastRoute);
 
       function clearLastRoute() {
           // Supprimer la dernière coordonnée de la liste
