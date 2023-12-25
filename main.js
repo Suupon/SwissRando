@@ -51,7 +51,7 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
                 map.getCanvas().style.cursor = '';
             });
         });
-    
+    })
     .catch(error => {
         console.error('Erreur lors du chargement du GeoJSON:', error);
     });
@@ -119,7 +119,7 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
 
 
       // Ajouter un gestionnaire d'événement pour le bouton "Effacer le dernier chemin"
-     // document.getElementById('clearRouteBtn').addEventListener('click', clearLastRoute);
+      document.getElementById('clearRouteBtn').addEventListener('click', clearLastRoute);
 
       function clearLastRoute() {
           // Supprimer la dernière coordonnée de la liste
