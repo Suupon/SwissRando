@@ -1,4 +1,36 @@
-mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ';    
+/*
+L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
+
+var map = L.mapbox.map('map')
+    .setView([46.8182, 8.2275], 8)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+
+
+// Charger les données GeoJSON et ajouter des marqueurs
+fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data, {
+            onEachFeature: function (feature, layer) {
+                // Vous pouvez personnaliser cette partie pour ajouter des popups ou d'autres informations
+                if (feature.properties && feature.properties.name) {
+                    layer.bindPopup(feature.properties.name);
+                }
+            }
+        }).addTo(map);
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement du GeoJSON:', error);
+    });
+
+
+    */
+
+
+
+    mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
+   
 
       var map = new mapboxgl.Map({
           container: 'map',
@@ -9,52 +41,38 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
 
       var coordinates = []; // Liste des coordonnées des points cliqués
 
+      // Charger les données GeoJSON et ajouter des marqueurs
       fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
-    .then(response => response.json())
-    .then(data => {
-        map.on('load', function() {
-            // Charger une image pour le marqueur personnalisé
-            map.loadImage('Map-Marker-Download-Free-PNG.png', function(error, image) {
-                if (error) throw error;
-                map.addImage('custom-marker', image);
+          .then(response => response.json())
+          .then(data => {
+              map.on('click', function(e) {
+                  var features = map.queryRenderedFeatures(e.point, {
+                      layers: ['markers']
+                  });
 
-                // Ajouter les données GeoJSON comme une source
-                map.addSource('markers', {
-                    type: 'geojson',
-                    data: data
-                });
+                  if (features.length === 1) {
+                      onMarkerClick(features[0]);
+                  }
+              });
 
-                // Ajouter une couche utilisant l'image personnalisée pour les marqueurs
-                map.addLayer({
-                    id: 'markers',
-                    type: 'symbol',
-                    source: 'markers',
-                    layout: {
-                        'icon-image': 'custom-marker',
-                        'icon-size': 0.5
-                        // Vous pouvez ajouter d'autres options de mise en page ici
-                    }
-                });
-            });
+              map.addSource('markers', {
+                  type: 'geojson',
+                  data: data
+              });
 
-            // Ajouter un gestionnaire de clic si nécessaire
-            map.on('click', 'markers', function(e) {
-                // Actions à effectuer lorsqu'un marqueur est cliqué
-                // par exemple, afficher un popup
-            });
-
-            // Modifier le curseur lorsqu'il passe sur un marqueur
-            map.on('mouseenter', 'markers', function() {
-                map.getCanvas().style.cursor = 'pointer';
-            });
-            map.on('mouseleave', 'markers', function() {
-                map.getCanvas().style.cursor = '';
-            });
-        });
-    })
-    .catch(error => {
-        console.error('Erreur lors du chargement du GeoJSON:', error);
-    });
+              map.addLayer({
+                  id: 'markers',
+                  type: 'circle',
+                  source: 'markers',
+                  paint: {
+                      'circle-radius': 10,
+                      'circle-color': '#007cbf'
+                  }
+              });
+          })
+          .catch(error => {
+              console.error('Erreur lors du chargement du GeoJSON:', error);
+          });
 
       function onMarkerClick(marker) {
           var clickedCoordinate = marker.geometry.coordinates;
@@ -116,21 +134,6 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
                   });
           }
       }
-
-
-      // Ajouter un gestionnaire d'événement pour le bouton "Effacer le dernier chemin"
-      document.getElementById('clearRouteBtn').addEventListener('click', clearLastRoute);
-
-      function clearLastRoute() {
-          // Supprimer la dernière coordonnée de la liste
-          coordinates.pop();
-
-          // Mettre à jour le tracé
-          updateRoute();
-      }
-
-      // ... (le reste de ton code)
-
 
 
 
@@ -214,35 +217,3 @@ function updateRoute() {
 }
 
 */
-
-
-// version au début 
-
-/*
-L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
-
-var map = L.mapbox.map('map')
-    .setView([46.8182, 8.2275], 8)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-
-
-
-// Charger les données GeoJSON et ajouter des marqueurs
-fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
-    .then(response => response.json())
-    .then(data => {
-        L.geoJSON(data, {
-            onEachFeature: function (feature, layer) {
-                // Vous pouvez personnaliser cette partie pour ajouter des popups ou d'autres informations
-                if (feature.properties && feature.properties.name) {
-                    layer.bindPopup(feature.properties.name);
-                }
-            }
-        }).addTo(map);
-    })
-    .catch(error => {
-        console.error('Erreur lors du chargement du GeoJSON:', error);
-    });
-
-
-    */
