@@ -10,3 +10,9 @@ body {
     bottom: 0;
     width: 100%;
 }
+
+#clearRouteBtn {
+    color: red !important;
+    z-index: 100000;
+    position: relative;
+}

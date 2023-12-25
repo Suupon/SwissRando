@@ -1,36 +1,4 @@
-/*
-L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
-
-var map = L.mapbox.map('map')
-    .setView([46.8182, 8.2275], 8)
-    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-
-
-
-// Charger les données GeoJSON et ajouter des marqueurs
-fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
-    .then(response => response.json())
-    .then(data => {
-        L.geoJSON(data, {
-            onEachFeature: function (feature, layer) {
-                // Vous pouvez personnaliser cette partie pour ajouter des popups ou d'autres informations
-                if (feature.properties && feature.properties.name) {
-                    layer.bindPopup(feature.properties.name);
-                }
-            }
-        }).addTo(map);
-    })
-    .catch(error => {
-        console.error('Erreur lors du chargement du GeoJSON:', error);
-    });
-
-
-    */
-
-
-
-    mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
-   
+mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ';    
 
       var map = new mapboxgl.Map({
           container: 'map',
@@ -41,6 +9,7 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
 
       var coordinates = []; // Liste des coordonnées des points cliqués
 
+<<<<<<< HEAD
       fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
     .then(response => response.json())
     .then(data => {
@@ -49,6 +18,16 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
             map.loadImage('Map-Marker-Download-Free-PNG.png', function(error, image) {
                 if (error) throw error;
                 map.addImage('custom-marker', image);
+=======
+      // Charger les données GeoJSON et ajouter des marqueurs
+      fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
+          .then(response => response.json())
+          .then(data => {
+              map.on('click', function(e) {
+                  var features = map.queryRenderedFeatures(e.point, {
+                      layers: ['markers']
+                  });
+>>>>>>> 2c0bf9a (bouton retour)
 
                 // Ajouter les données GeoJSON comme une source
                 map.addSource('markers', {
@@ -150,6 +129,21 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
       }
 
 
+      // Ajouter un gestionnaire d'événement pour le bouton "Effacer le dernier chemin"
+      document.getElementById('clearRouteBtn').addEventListener('click', clearLastRoute);
+
+      function clearLastRoute() {
+          // Supprimer la dernière coordonnée de la liste
+          coordinates.pop();
+
+          // Mettre à jour le tracé
+          updateRoute();
+      }
+
+      // ... (le reste de ton code)
+
+
+
 
 
 // Version avec leaflet pour avoir un bon marqeur mais le chemain ne s'affiche pas 
@@ -231,3 +225,35 @@ function updateRoute() {
 }
 
 */
+
+
+// version au début 
+
+/*
+L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
+
+var map = L.mapbox.map('map')
+    .setView([46.8182, 8.2275], 8)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+
+
+// Charger les données GeoJSON et ajouter des marqueurs
+fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
+    .then(response => response.json())
+    .then(data => {
+        L.geoJSON(data, {
+            onEachFeature: function (feature, layer) {
+                // Vous pouvez personnaliser cette partie pour ajouter des popups ou d'autres informations
+                if (feature.properties && feature.properties.name) {
+                    layer.bindPopup(feature.properties.name);
+                }
+            }
+        }).addTo(map);
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement du GeoJSON:', error);
+    });
+
+
+    */
