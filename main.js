@@ -51,7 +51,7 @@ mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOT
                 map.getCanvas().style.cursor = '';
             });
         });
-    })
+    
     .catch(error => {
         console.error('Erreur lors du chargement du GeoJSON:', error);
     });
