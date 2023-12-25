@@ -5,7 +5,6 @@ var map = L.mapbox.map('map')
     .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
 
 
-<<<<<<< HEAD
 
 // Charger les données GeoJSON et ajouter des marqueurs
 fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
@@ -27,24 +26,6 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
 
 /*
     $.ajax({
-=======
-  /*
-
-    const markers = JSON.parse (mapElement.dataset.markers);
-    markers.forEach ((marker) => { 
-      new mapboxgl.Marker()
-*         setLngLat([ marker. Ing, marker. lat ])
-*         setPopup(new mapboxgl. Popup({ offset: 25 })
-*         setHTML(
-          "<div class="+"link_popup"+" >"+
-          "<a href=/kots/"+marker.id_kot+">"+
-          "<h1>" + marker.kot_type +"</h1>"+ 
-          "<p>"+ marker.street+"</p›" +
-          "<p>›" marker.rent_price+ " ("+ "</p>" +"</a>"+"</div>"
-*         addTo(map);
-｝)；
-   /* $.ajax({
->>>>>>> 5f3959f (lol)
       url: 'test.json',
       type: 'GET',
       dataType: 'json',
