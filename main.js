@@ -23,226 +23,197 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
     .catch(error => {
         console.error('Erreur lors du chargement du GeoJSON:', error);
     });
+
+
     */
 
-    
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ';
 
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
-    center: [8.2275, 46.8182],
-    zoom: 8
-});
 
-var markers = [];
+    mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
+   
 
-map.on('click', function (e) {
-    // Ajouter un marqueur
-    var marker = new mapboxgl.Marker()
-        .setLngLat(e.lngLat)
-        .addTo(map);
-    markers.push(marker);
+      var map = new mapboxgl.Map({
+          container: 'map',
+          style: 'mapbox://styles/mapbox/streets-v11',
+          center: [8.2275, 46.8182],
+          zoom: 8
+      });
 
-    // Mettre à jour le trajet
+      var coordinates = []; // Liste des coordonnées des points cliqués
+
+      // Charger les données GeoJSON et ajouter des marqueurs
+      fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
+          .then(response => response.json())
+          .then(data => {
+              map.on('click', function(e) {
+                  var features = map.queryRenderedFeatures(e.point, {
+                      layers: ['markers']
+                  });
+
+                  if (features.length === 1) {
+                      onMarkerClick(features[0]);
+                  }
+              });
+
+              map.addSource('markers', {
+                  type: 'geojson',
+                  data: data
+              });
+
+              map.addLayer({
+                  id: 'markers',
+                  type: 'circle',
+                  source: 'markers',
+                  paint: {
+                      'circle-radius': 10,
+                      'circle-color': '#007cbf'
+                  }
+              });
+          })
+          .catch(error => {
+              console.error('Erreur lors du chargement du GeoJSON:', error);
+          });
+
+      function onMarkerClick(marker) {
+          var clickedCoordinate = marker.geometry.coordinates;
+
+          // Ajouter la nouvelle coordonnée à la liste des coordonnées des points
+          coordinates.push(clickedCoordinate);
+
+          // Mettre à jour le tracé
+          updateRoute();
+      }
+
+      function updateRoute() {
+          // Si la couche de tracé existe, la supprimer
+          if (map.getLayer('route')) {
+              map.removeLayer('route');
+          }
+
+          // Si la source de tracé existe, la supprimer
+          if (map.getSource('route')) {
+              map.removeSource('route');
+          }
+
+          // Si nous avons au moins deux points, créer un tracé
+          if (coordinates.length >= 2) {
+              var url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + coordinates.join(';') +
+                        '?geometries=geojson&access_token=' + mapboxgl.accessToken;
+
+              // Effectuer la requête Directions
+              fetch(url)
+                  .then(response => response.json())
+                  .then(data => {
+                      // Ajouter la source du tracé
+                      map.addSource('route', {
+                          type: 'geojson',
+                          data: {
+                              type: 'Feature',
+                              properties: {},
+                              geometry: data.routes[0].geometry
+                          }
+                      });
+
+                      // Ajouter la couche de tracé
+                      map.addLayer({
+                          id: 'route',
+                          type: 'line',
+                          source: 'route',
+                          layout: {
+                              'line-join': 'round',
+                              'line-cap': 'round'
+                          },
+                          paint: {
+                              'line-color': '#007cbf',
+                              'line-width': 2
+                          }
+                      });
+                  })
+                  .catch(error => {
+                      console.error('Erreur lors de la requête Directions:', error);
+                  });
+          }
+      }
+
+
+
+
+// Version avec leaflet pour avoir un bon marqeur mais le chemain ne s'affiche pas 
+
+/*
+L.mapbox.accessToken = 'pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
+ 
+
+var map = L.mapbox.map('map')
+    .setView([46.8182, 8.2275], 8)
+    .addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
+
+var coordinates = []; // Liste des coordonnées des points cliqués
+
+// Charger les données GeoJSON et ajouter des marqueurs
+fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
+    .then(response => response.json())
+    .then(data => {
+        var markerGroup = L.layerGroup().addTo(map);
+
+        L.geoJSON(data, {
+            pointToLayer: function(feature, latlng) {
+                return L.marker(latlng, {
+                    icon: L.mapbox.marker.icon(),
+                });
+            },
+            onEachFeature: function(feature, layer) {
+                layer.on('click', function() {
+                    onMarkerClick(layer);
+                });
+                markerGroup.addLayer(layer);
+            }
+        });
+
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement du GeoJSON:', error);
+    });
+
+function onMarkerClick(marker) {
+    var clickedCoordinate = marker.getLatLng();
+
+    // Ajouter la nouvelle coordonnée à la liste des coordonnées des points
+    coordinates.push([clickedCoordinate.lng, clickedCoordinate.lat]);
+
+    // Mettre à jour le tracé
     updateRoute();
-});
+}
 
 function updateRoute() {
-    if (markers.length >= 2) {
-        // Récupérer les coordonnées des marqueurs
-        var coordinates = markers.map(marker => marker.getLngLat().toArray());
+    // Si la couche de tracé existe, la supprimer
+    if (map.hasLayer('route')) {
+        map.removeLayer('route');
+    }
 
-        // Effectuer une requête au service Directions
-        var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + coordinates.join(';') +
-            '?steps=true&geometries=geojson&access_token=' + mapboxgl.accessToken;
+    // Si nous avons au moins deux points, créer un tracé
+    if (coordinates.length >= 2) {
+        var url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + coordinates.join(';') +
+                  '?geometries=geojson&access_token=' + L.mapbox.accessToken;
 
-        fetch(directionsRequest)
+        // Effectuer la requête Directions
+        fetch(url)
             .then(response => response.json())
             .then(data => {
-                var route = data.routes[0].geometry;
+                var route = L.geoJSON(data.routes[0].geometry, {
+                    style: {
+                        color: '#007cbf',
+                        weight: 2
+                    }
+                }).addTo(map);
 
-                // Supprimer le chemin existant s'il y en a un
-                if (map.getSource('route')) {
-                    map.getSource('route').setData(route);
-                } else {
-                    // Ajouter le chemin
-                    map.addSource('route', {
-                        type: 'geojson',
-                        data: route
-                    });
-
-                    map.addLayer({
-                        id: 'route',
-                        type: 'line',
-                        source: 'route',
-                        layout: {
-                            'line-join': 'round',
-                            'line-cap': 'round'
-                        },
-                        paint: {
-                            'line-color': '#3887be',
-                            'line-width': 5,
-                            'line-opacity': 0.75
-                        }
-                    });
-                }
+                // Ajouter la couche de tracé
+                route.addTo(map).bindPopup('Distance: ' + (data.routes[0].distance / 1000).toFixed(2) + ' km');
             })
-            .catch(error => console.error('Erreur lors de la requête Directions:', error));
+            .catch(error => {
+                console.error('Erreur lors de la requête Directions:', error);
+            });
     }
 }
 
-  
-   
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-    $.ajax({
-      url: 'test.json',
-      type: 'GET',
-      dataType: 'json',
-      success: function (data) {
-          console.log("Données chargées :", data);
-  
-          L.geoJson(data, {
-              pointToLayer: function (feature, latlng) {
-                  return L.marker(latlng, {
-                      icon: L.mapbox.marker.icon({
-                          'marker-size': 'medium',
-                          'marker-symbol': 'marker',
-                          'marker-color': '#fa0'
-                      }),
-                  });
-              },
-              onEachFeature: function (feature, layer) {
-                  layer.bindPopup(feature.properties.nom);
-              }
-          }).addTo(map);
-      },
-      error: function (error) {
-          console.error('Erreur lors du chargement des données JSON : ', error);
-      }
-  });
-
-
-{
-    "monuments": [
-      {
-        "nom": "Tour Eiffel",
-        "type": "Monument",
-        "latitude": 46.7900272914847, 
-        "longitude": 6.648882886579519
-      
-      }
-
-      ]
-
-      }
-
-
-
-L.mapbox.accessToken ='pk.eyJ1IjoieW90YW13ZSIsImEiOiJjbHA0MHA3bG0xYnc4Mmlxa3BzbnV1MG9kIn0.gDTM19hR_KXwh5PQkAzsjA';
-
-var map = L.mapbox.map('map')
-.setView([46.8182, 8.2275], 8)
-.addLayer(L.mapbox.styleLayer('mapbox://styles/mapbox/streets-v11'));
-
-
-
-$.ajax({
-  url: 'districts-lakes.json',
-  type: 'GET',
-  dataType: 'json',
-  success: function (data) {
-      // Ajoutez un marqueur pour chaque monument
-      map.on('load', function () {
-          map.addSource('monuments', {
-              type: 'geojson',
-              data: data
-          });
-
-          map.addLayer({
-              id: 'monuments',
-              type: 'symbol',
-              source: 'monuments',
-              layout: {
-                  'icon-image': 'marker', // Remplacez par le nom de votre propre icône
-                  'icon-size': 2.5,
-                  'text-field': ['get', 'nom'],
-                  'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-                  'text-offset': [0, 0.6],
-                  'text-anchor': 'top'
-              }
-          });
-      });
-  },
-  error: function (error) {
-      console.error('Erreur lors du chargement des données JSON : ', error);
-  }
-});
-
-
-
-fetch('districts-lakes.json')
-    .then(response => response.json())
-    .then(data => {
-        // Parcourir les données et ajouter des marqueurs sur la carte
-        data.monuments.forEach(function(monument) {
-            // Ajouter un marqueur à la position spécifiée
-            var marker = L.marker([monument.latitude, monument.longitude])
-                .addTo(map)
-                .bindPopup(`
-                     ${monument.nom}
-                    Type: ${monument.type}
-                    <img src="${monument.image}" alt="${monument.nom}" style="max-width: 100%; height: auto;">
-                `)
-                });
-        });
-  
-/*    
-$.ajax({
-  type:'GET',
-  url: 'districts-lakes.json',
-  dataType: 'json',
-  success: function(data) {
-    // Parcourir les données JSON et ajouter des marqueurs à la carte
-    data.forEach(function(location) {
-      var marker = L.marker([ location.lon, location.lat]).addTo(map);
-      // Vous pouvez personnaliser le popup du marqueur avec d'autres informations du JSON
-      marker.bindPopup('<b>' + location.name + '</b><br>' + location.description);
-    });
-  }
-});*/
+*/
