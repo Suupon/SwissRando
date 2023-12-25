@@ -42,7 +42,7 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
       var coordinates = []; // Liste des coordonnées des points cliqués
 
       // Charger les données GeoJSON et ajouter des marqueurs
-      fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
+      fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
           .then(response => response.json())
           .then(data => {
               map.on('click', function(e) {
