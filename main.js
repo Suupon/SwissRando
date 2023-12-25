@@ -41,38 +41,52 @@ fetch('lacs.geojson') // Remplacer par le chemin réel du fichier GeoJSON
 
       var coordinates = []; // Liste des coordonnées des points cliqués
 
-      // Charger les données GeoJSON et ajouter des marqueurs
       fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
-          .then(response => response.json())
-          .then(data => {
-              map.on('click', function(e) {
-                  var features = map.queryRenderedFeatures(e.point, {
-                      layers: ['markers']
-                  });
+    .then(response => response.json())
+    .then(data => {
+        map.on('load', function() {
+            // Charger une image pour le marqueur personnalisé
+            map.loadImage('Map-Marker-Download-Free-PNG.png', function(error, image) {
+                if (error) throw error;
+                map.addImage('custom-marker', image);
 
-                  if (features.length === 1) {
-                      onMarkerClick(features[0]);
-                  }
-              });
+                // Ajouter les données GeoJSON comme une source
+                map.addSource('markers', {
+                    type: 'geojson',
+                    data: data
+                });
 
-              map.addSource('markers', {
-                  type: 'geojson',
-                  data: data
-              });
+                // Ajouter une couche utilisant l'image personnalisée pour les marqueurs
+                map.addLayer({
+                    id: 'markers',
+                    type: 'symbol',
+                    source: 'markers',
+                    layout: {
+                        'icon-image': 'custom-marker',
+                        'icon-size': 0.5
+                        // Vous pouvez ajouter d'autres options de mise en page ici
+                    }
+                });
+            });
 
-              map.addLayer({
-                  id: 'markers',
-                  type: 'circle',
-                  source: 'markers',
-                  paint: {
-                      'circle-radius': 10,
-                      'circle-color': '#007cbf'
-                  }
-              });
-          })
-          .catch(error => {
-              console.error('Erreur lors du chargement du GeoJSON:', error);
-          });
+            // Ajouter un gestionnaire de clic si nécessaire
+            map.on('click', 'markers', function(e) {
+                // Actions à effectuer lorsqu'un marqueur est cliqué
+                // par exemple, afficher un popup
+            });
+
+            // Modifier le curseur lorsqu'il passe sur un marqueur
+            map.on('mouseenter', 'markers', function() {
+                map.getCanvas().style.cursor = 'pointer';
+            });
+            map.on('mouseleave', 'markers', function() {
+                map.getCanvas().style.cursor = '';
+            });
+        });
+    })
+    .catch(error => {
+        console.error('Erreur lors du chargement du GeoJSON:', error);
+    });
 
       function onMarkerClick(marker) {
           var clickedCoordinate = marker.geometry.coordinates;
