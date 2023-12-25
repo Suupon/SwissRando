@@ -39,6 +39,34 @@
                       'circle-color': '#007cbf'
                   }
               });
+
+
+               // Modifier le curseur lorsqu'il passe sur un marqueur
+            map.on('mouseenter', 'markers', function(e) {
+                map.getCanvas().style.cursor = 'pointer';
+                // Assurez-vous que les propriétés sont présentes
+                if (!e.features.length) {
+                    return;
+                }
+
+                var feature = e.features[0];
+
+                // Créez le contenu de la popup ici en utilisant les propriétés du marqueur
+                var popupContent = feature.properties.name; // Remplacez par la propriété appropriée
+
+                // Configurez la position et le contenu de la popup
+                popup.setLngLat(feature.geometry.coordinates)
+                    .setHTML(popupContent)
+                    .addTo(map);
+
+
+            });
+            map.on('mouseleave', 'markers', function() {
+                map.getCanvas().style.cursor = '';
+                popup.remove();
+            });
+
+   
           })
           .catch(error => {
               console.error('Erreur lors du chargement du GeoJSON:', error);
@@ -105,6 +133,12 @@
           }
       }
 
+
+      var popup = new mapboxgl.Popup({
+        closeButton: false,
+        closeOnClick: false
+    });
+    
 
 
 
