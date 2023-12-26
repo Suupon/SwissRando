@@ -78,53 +78,9 @@ function onMarkerClick(marker) {
     // Ajouter la nouvelle coordonnée à la liste des coordonnées des points
     coordinates.push(clickedCoordinate);
 
-<<<<<<< HEAD
-              map.addLayer({
-                  id: 'markers',
-                  type: 'circle',
-                  source: 'markers',
-                  paint: {
-                      'circle-radius': 10,
-                      'circle-color': '#007cbf'
-                  }
-              });
-
-
-               // Modifier le curseur lorsqu'il passe sur un marqueur
-            map.on('mouseenter', 'markers', function(e) {
-                map.getCanvas().style.cursor = 'pointer';
-                // Assurez-vous que les propriétés sont présentes
-                if (!e.features.length) {
-                    return;
-                }
-
-                var feature = e.features[0];
-
-                // Créez le contenu de la popup ici en utilisant les propriétés du marqueur
-                var popupContent = feature.properties.name; // Remplacez par la propriété appropriée
-
-                // Configurez la position et le contenu de la popup
-                popup.setLngLat(feature.geometry.coordinates)
-                    .setHTML(popupContent)
-                    .addTo(map);
-
-
-            });
-            map.on('mouseleave', 'markers', function() {
-                map.getCanvas().style.cursor = '';
-                popup.remove();
-            });
-
-   
-          })
-          .catch(error => {
-              console.error('Erreur lors du chargement du GeoJSON:', error);
-          });
-=======
     // Mettre à jour le tracé
     updateRoute();
 }
->>>>>>> 2159860 (mise en place des onglets)
 
 function updateRoute() {
     // Si la couche de tracé existe, la supprimer
@@ -166,8 +122,8 @@ function updateRoute() {
                         'line-cap': 'round'
                     },
                     paint: {
-                        'line-color': '#007cbf',
-                        'line-width': 2
+                        'line-color': '#B63E24',
+                        'line-width': 5
                     }
                 });
             })
@@ -182,12 +138,6 @@ var popup = new mapboxgl.Popup({
   closeButton: false,
   closeOnClick: false
 });
-
-      var popup = new mapboxgl.Popup({
-        closeButton: false,
-        closeOnClick: false
-    });
-    
 
 
 
