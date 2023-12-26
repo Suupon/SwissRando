@@ -18,6 +18,38 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            var tabs = $("#tabs").tabs();
+            var previouslyFocused = false;
+
+            tabs.find(".ui-tabs-nav").sortable({
+                axis: "x",
+                start: function (event, ui) {
+                    previouslyFocused = document.activeElement === ui.item[0];
+                },
+                stop: function (event, ui) {
+                    tabs.tabs("refresh");
+                    if (previouslyFocused) {
+                        ui.item.trigger("focus");
+                    }
+                },
+            });
+
+            // Event when tab is activated
+            tabs.on("tabsactivate", function(event, ui) {
+                // Check if the active tab is the one containing the map
+                if (ui.newPanel.attr("id") === "tabs-1") {
+                    // Resize the map when the tab is activated
+                    map.resize();
+                }
+            });
+        });
+    </script>
     
   
    
@@ -25,15 +57,29 @@
 </head>
 <body>
 
-
-<div id='map'>
-    <script src="main.js"></script>
+    <div id="tabs">
+    <ul>
+      <li><a href="#tabs-1">Nunc tincidunt</a></li>
+      <li><a href="#tabs-2">Proin dolor</a></li>
+      <li><a href="#tabs-3">Aenean lacinia</a></li>
+    </ul>
+    <div id="tabs-1">
+      <div id="map"></div>
     
-</div>
-<button id="clearRouteBtn">Retour</button>
+      <script src="main.js"></script>
+      
+    </div>
 
-
-
-</body>
+    <div id="tabs-2">
+      <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ...</p>
+    </div>
+    <div id="tabs-3">
+      <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. ...</p>
+      <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper ...</p>
+    </div>
+    </div>
+    
+    </body>
 </html>
+
 
