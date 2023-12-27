@@ -50,44 +50,34 @@
             });
         });
     </script>
-
-    <script>
-        $(document).ready(function() {
-            $(".box").hover(
-                function() {
-                    // Survol de la boîte
-                    $(this).find("h1#textegalerie").addClass("hidden");
-                },
-                function() {
-                    // Fin du survol de la boîte
-                    $(this).find("h1#textegalerie").removeClass("hidden");
-                }
-            );
-        });
-    </script>
-    
-  
    
         
 </head>
 <body>
 
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+
+    <!-- LES ONLGLETS -->
     <div id="tabs">
     <ul>
       <li><a href="#tabs-1">Carte</a></li>
       <li><a href="#tabs-2">Profil</a></li>
       <li><a href="#tabs-3">Galerie</a></li>
     </ul>
+    
+    <!--ONLGET Carte-->
     <div id="tabs-1">
       <div id="map"></div>
-    
       <script src="main.js"></script>
-      
     </div>
 
+    <!--ONGLET Profil-->
     <div id="tabs-2">
       <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ...</p>
     </div>
+
+    <!--ONLGET Galerie-->
     <div id="tabs-3">
         
         <div class="box">
@@ -106,7 +96,30 @@
         </div>
     </div>
     </div>
-    
+       // Album trié par lieu et par date
+    <div id="album">
+        <div id="sorting-options">
+            <label for="sort-location">Trier par lieu:</label>
+            <select id="sort-location">
+                <option value="all">Tous</option>
+                <option value="paris">Paris</option>
+                <option value="new-york">New York</option>
+                <!-- Ajoutez d'autres options pour différents lieux -->
+            </select>
+
+            <label for="sort-date">Trier par date:</label>
+            <select id="sort-date">
+                <option value="all">Toutes les dates</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <!-- Ajoutez d'autres options pour différentes dates -->
+            </select>
+        </div>
+
+        <div id="photo-container">
+            <!-- Les photos seront ajoutées dynamiquement ici -->
+        </div>
+    </div>
     </body>
 </html>
 

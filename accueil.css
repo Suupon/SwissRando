@@ -9,6 +9,7 @@ body {
 
     height: 900px;  
 }
+/******************* Tabs-1 ***************/
 
 #tabs-1{
    
@@ -23,20 +24,16 @@ body {
     height: 90%;
 }
 
-#clearRouteBtn {
-    color: red !important;
-    z-index: 100000;
-    position: relative;
-}
+/******************* FIN Tabs-1 ***************/
 
 
+
+/******************* Tabs-3***************/
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-
 
 
 .ui-tabs .ui-tabs-panel{
@@ -106,3 +103,11 @@ body {
 
 }
 
+/******************* FIN Tabs-3***************/
+
+
+#clearRouteBtn {
+    color: red !important;
+    z-index: 100000;
+    position: relative;
+}
