@@ -46,6 +46,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    position: relative;
 }
 
 .holder {
@@ -53,6 +54,14 @@ body {
 }
 
 
+.box1 {
+    /* Styles pour .box1 */
+    position: absolute;
+    top: 30%; /* Ajustez la position verticale selon vos besoins */
+    z-index: 1; /* Mettez .box1 en arrière-plan */
+    margin-left: 30%;
+    font-size: 3.5em;
+}
 
 .box{
     position: relative;
