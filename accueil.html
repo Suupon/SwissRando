@@ -50,6 +50,21 @@
             });
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $(".box").hover(
+                function() {
+                    // Survol de la boîte
+                    $(this).find("h1#textegalerie").addClass("hidden");
+                },
+                function() {
+                    // Fin du survol de la boîte
+                    $(this).find("h1#textegalerie").removeClass("hidden");
+                }
+            );
+        });
+    </script>
     
   
    
@@ -59,9 +74,9 @@
 
     <div id="tabs">
     <ul>
-      <li><a href="#tabs-1">CARTE</a></li>
-      <li><a href="#tabs-2">PROFIL</a></li>
-      <li><a href="#tabs-3">GALERIE</a></li>
+      <li><a href="#tabs-1">Carte</a></li>
+      <li><a href="#tabs-2">Profil</a></li>
+      <li><a href="#tabs-3">Galerie</a></li>
     </ul>
     <div id="tabs-1">
       <div id="map"></div>
@@ -74,8 +89,19 @@
       <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ...</p>
     </div>
     <div id="tabs-3">
-      <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. ...</p>
-      <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper ...</p>
+        
+        <div class="box">
+           
+            <span style= "--i: 1;" > <img src="images/Greifensee.jpg"></span>
+            <span style= "--i: 2;" > <img src="images/Lac_4Cantons.jpg"></span>
+            <span style= "--i: 3;" > <img src="images/lac_constance.jpeg"></span>
+            <span style= "--i: 4;" > <img src="images/lac_sihlsee.jpg"></span>
+            <span style= "--i: 5;" > <img src="images/lac-leman.jpg"></span>
+            <span style= "--i: 6;" > <img src="images/lac-neuchatel.jpg"></span>
+            <span style= "--i: 7;" > <img src="images/Zuger_See.jpg"></span>
+            <span style= "--i: 8;"> <img src="images/lac-sempachersee.jpg"></span>
+
+        </div>
     </div>
     </div>
     
