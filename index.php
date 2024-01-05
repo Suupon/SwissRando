@@ -31,5 +31,9 @@
     <label>Mdp</label>
     <input type="password" name= "mdp" placeholder = "Entrer votre Mot de passe">
     </div>
+
+    <div class="btn">
+        <button type= "submit"> envoyer </button>
+    </div>
 </body>
 </html>
