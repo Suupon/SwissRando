@@ -39,35 +39,52 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
                 'circle-color': '#007cbf'
             }
         });
+      
+       // Modifier le curseur lorsqu'il passe sur un marqueur
+       map.on('mouseenter', 'markers', function(e) {
+        map.getCanvas().style.cursor = 'pointer';
+        // Assurez-vous que les propriétés sont présentes
+        if (!e.features.length) {
+            return;
+        }
 
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var lacName = e.features[0].properties.name; // Assurez-vous que vos données GeoJSON ont une propriété 'description'
+        var description = e.features[0].properties.description; // Propriété 'description'
+        var imageUrl = e.features[0].properties.imageUrl; // Propriété 'imageUrl' pour l'image du lac
+       
 
-         // Modifier le curseur lorsqu'il passe sur un marqueur
-      map.on('mouseenter', 'markers', function(e) {
-          map.getCanvas().style.cursor = 'pointer';
-          // Assurez-vous que les propriétés sont présentes
-          if (!e.features.length) {
-              return;
-          }
+        var popupContent = `
+            <div class="popup-content">
+                <h3>${lacName}</h3>
+                <img src= ${imageUrl} alt="${lacName}" style="max-width:100%;"/>
+                <p>${description}</p>
+                <label for="rating">Notez votre experience:</label>
+                <input type="number" id="rating" name="rating" min="1" max="5">
+            </div>
+        `;
 
-          var feature = e.features[0];
+        // Assurer que les popups s'affichent au-dessus des marqueurs
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
 
-          // Créez le contenu de la popup ici en utilisant les propriétés du marqueur
-          var popupContent = feature.properties.name; // Remplacez par la propriété appropriée
+        
+           
+        new mapboxgl.Popup()
+        .setLngLat(coordinates)
+        .setHTML(popupContent)
+        .addTo(map); 
 
-          // Configurez la position et le contenu de la popup
-          popup.setLngLat(feature.geometry.coordinates)
-              .setHTML(popupContent)
-              .addTo(map);
+        map.on('mouseleave', 'markers', function() {
+            map.getCanvas().style.cursor = '';
+            popup.remove();
+        });
 
-
-      });
-      map.on('mouseleave', 'markers', function() {
-          map.getCanvas().style.cursor = '';
-          popup.remove();
-      });
 
 
     })
+})
     .catch(error => {
         console.error('Erreur lors du chargement du GeoJSON:', error);
     });
