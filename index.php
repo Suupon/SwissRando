@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="form.css">
     <title>inscription</title>
 </head>
 
@@ -27,7 +28,7 @@
     <input type="radio" name= "civilite">Mme
     </div>
 
-    div>
+    <div>
     <label>Mdp</label>
     <input type="password" name= "mdp" placeholder = "Entrer votre Mot de passe">
     </div>
