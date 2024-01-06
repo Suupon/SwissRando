@@ -225,4 +225,3 @@ var popup = new mapboxgl.Popup({
 });
 
 
-
