@@ -56,9 +56,6 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
                     <h3>${lacName}</h3>
                     <img src="${imageUrl}" alt="${lacName}" style="max-width:100%;"/>
                     <p>${description}</p>
-                    <label for="rating">Notez votre experience:</label>
-                    <input type="number" id="rating" name="rating" min="1" max="5">
-                    <button onclick="submitRating()">Soumettre</button>
                 </div>
 
                 <style> 
@@ -142,7 +139,7 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
             
             map.on('mouseleave', 'markers', function() {
                 map.getCanvas().style.cursor = '';
-                //popup.remove(); // This will remove the popup when the mouse leaves the marker
+                popup.remove(); // This will remove the popup when the mouse leaves the marker
             });
         });
         
