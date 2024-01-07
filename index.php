@@ -13,8 +13,19 @@
     </div>
 
     <div>
-    <label>Name</label>
+    <label>Civilité</label>
+    <input type="radio" name= "civilite">Mr
+    <input type="radio" name= "civilite">Mme
+    </div>
+    <br> </br>
+    <div>
+    <label>Nom</label>
     <input type="text" name= "name" placeholder = "Entrer votre nom">
+    </div>
+
+    <div>
+    <label>Prénom</label>
+    <input type="text" name= "prenom" placeholder = "Entrer votre prénom">
     </div>
 
     <div>
@@ -23,18 +34,12 @@
     </div>
 
     <div>
-    <label>Civilite</label>
-    <input type="radio" name= "civilite">Mr
-    <input type="radio" name= "civilite">Mme
-    </div>
-
-    <div>
-    <label>Mdp</label>
+    <label>Mot de Passe </label>
     <input type="password" name= "mdp" placeholder = "Entrer votre Mot de passe">
     </div>
 
     <div class="btn">
-        <button type= "submit"> envoyer </button>
+        <button type= "submit"> Envoyer </button>
     </div>
 </body>
 </html>
