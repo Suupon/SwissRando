@@ -118,8 +118,7 @@ body {
 
 
 .ui-tabs .ui-tabs-panel{
-
-    height: 3000px; 
+    height: 3000px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -132,27 +131,26 @@ body {
 }
 
 #tabs-3 .haut{
-    border: 5px solid black;
+    height: 25%;
 }
 .box1 {
-    /* Styles pour .box1 */
     position: absolute;
-    top: 10%; /* Ajustez la position verticale selon vos besoins */
-    z-index: 1; /* Mettez .box1 en arrière-plan */
+    top: 10%;
+    z-index: 1; 
     margin-left: 30%;
     font-size: 3.5em;
 }
 
 .box{
     position: relative;
-    width: 200px;
+    width:200px;
     height: 200px;
     margin-left: 43%;
-    margin-top: 30%;
+    margin-top: 20%;
   
     transform-style:preserve-3d;
     animation: animate 20s linear infinite;
-    border: 20px solid black;
+
 
 }
 
@@ -190,9 +188,8 @@ body {
 
 #album {
     width: 100%;
-    margin-left: 10%;
     margin-top: 20%;
-    border: 5px solid black;
+    margin-left: 2%;
 }
 
 #sorting-options {
