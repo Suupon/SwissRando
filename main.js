@@ -253,36 +253,57 @@ function updateRoute(segment) {
         return Math.sqrt(dx * dx + dy * dy);
     }
     
-    var savedRoutes = [];
 
-    function saveRoute() {
-        var itinerary = [];
-    
-        if (startCoords) {
-            var nearestStartLake = findNearestLake(lakeData, startCoords);
-    
-            if (nearestStartLake) {
-                itinerary.push({ Etape: itinerary.length + 1, lakeName: nearestStartLake.properties.name });
-            }
+
+     // Genérer les tableaux d'itinéraires
+
+     function generateRouteTables(step,index) {
+        // Générer le tableau HTML pour l'itinéraire
+    var tableHtml = '<table><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>';
+    itinerary.forEach((step, index) => {
+        tableHtml += `<tr><td>${index + 1}</td><td>${step.lakeName}</td><td><input type='text'/></td></tr>`;
+    });
+    tableHtml += '</table>';
+
+    // Ajouter le tableau à l'onglet 'Classement'
+    document.getElementById('tabs-2').innerHTML += tableHtml;
+   
+  }
+
+  function saveRoute() {
+    var itinerary = [];
+
+    if (startCoords) {
+        var nearestStartLake = findNearestLake(lakeData, startCoords);
+        if (nearestStartLake) {
+            itinerary.push({ Etape: itinerary.length + 1, lakeName: nearestStartLake.properties.name });
         }
-    
-        segments.forEach(segment => {
-            var endCoords = segment.end;
-            var nearestLake = findNearestLake(lakeData, endCoords);
-    
-            if (nearestLake) {
-                itinerary.push({ Etape: itinerary.length + 1, lakeName: nearestLake.properties.name });
-            }
+    }
+
+    segments.forEach(segment => {
+        var endCoords = segment.end;
+        var nearestLake = findNearestLake(lakeData, endCoords);
+        if (nearestLake) {
+            itinerary.push({ Etape: itinerary.length + 1, lakeName: nearestLake.properties.name });
+        }
+    });
+
+    if (itinerary.length > 0) {
+        alert("Itinéraire enregistré: " + JSON.stringify(itinerary));
+
+        // Générer et ajouter le tableau HTML
+        var tableHtml = '<table><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>';
+        itinerary.forEach((step, index) => {
+            tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='text'/></td></tr>`;
         });
-    
-        if (itinerary.length > 0) {
-            alert("Itinéraire enregistré: " + JSON.stringify(itinerary));
-        } else {
-            alert("Aucun lac correspondant trouvé pour l'itinéraire.");
-        }
-        
-        savedRoutes.push(itinerary);
-        // Nettoyer les segments existants
+        tableHtml += '</table>';
+        document.getElementById('tabs-2').innerHTML += tableHtml;
+
+    } else {
+        alert("Aucun lac correspondant trouvé pour l'itinéraire.");
+    }
+
+    // Nettoyer les segments existants
     segments.forEach(segment => {
         if (map.getLayer('route-' + segment.id)) {
             map.removeLayer('route-' + segment.id);
@@ -297,10 +318,14 @@ function updateRoute(segment) {
     coordinates = [];
     nextSegmentId = 0;
     startCoords = null;
-    }
-    
+}
 
     
     
     document.getElementById('save-route-btn').addEventListener('click', saveRoute);
+
+
+   
+
+   
     
