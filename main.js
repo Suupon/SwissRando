@@ -1,6 +1,8 @@
 
 mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
 
+
+
 var lakeData; // Variable globale pour les données GeoJSON
 window.onload=  map = new mapboxgl.Map({
     container: 'map',
@@ -273,6 +275,8 @@ function updateRoute(segment) {
   function saveRoute() {
     var itinerary = [];
 
+
+    
     if (startCoords) {
         var nearestStartLake = findNearestLake(lakeData, startCoords);
         if (nearestStartLake) {
@@ -288,13 +292,15 @@ function updateRoute(segment) {
         }
     });
 
-    if (itinerary.length > 0) {
-        alert("Itinéraire enregistré: " + JSON.stringify(itinerary));
 
+    
+    if (itinerary.length > 0) {
+
+        
         // Générer et ajouter le tableau HTML
         var tableHtml = '<table><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>';
         itinerary.forEach((step, index) => {
-            tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='text'/></td></tr>`;
+            tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='number' min='1' max='5' /></td></tr>`;
         });
         tableHtml += '</table>';
         document.getElementById('tabs-2').innerHTML += tableHtml;
@@ -320,12 +326,55 @@ function updateRoute(segment) {
     startCoords = null;
 }
 
+  
+ 
+    // Soumission des notes
     
-    
+  
+
+
     document.getElementById('save-route-btn').addEventListener('click', saveRoute);
+        
 
-
+    var submitButton = document.querySelector("#submit-btn");
+    console.log(submitButton)
+            submitButton.addEventListener('click', function submitratings() {
+                console.log("jsuis ici")
+                var ratings = [];
+                var rows = document.querySelectorAll('#tabs-2 table tr');
+                rows.forEach((row, index) => {
+                    if (index > 0) { // Ignorer l'en-tête du tableau
+                        var lakeName = row.cells[1].innerText;
+                        var rating = row.cells[2].querySelector('input').value;
+                        ratings.push({ lakeName: lakeName, note: rating });
+                    }
+                });
+                var jsonRatings = JSON.stringify(ratings);
+                console.log(jsonRatings).
+               
+                fetch('Notes.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: jsonRatings // les données collectées
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Traiter la réponse du serveur ici
+                    console.log(data);
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            
+            
+                var ratingInputs = document.querySelectorAll('#tabs-2 table input[type="number"]');
+                ratingInputs.forEach(function(input) {
+                    input.disabled = true;
+                });
    
+            });
 
    
     
