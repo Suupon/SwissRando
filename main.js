@@ -61,11 +61,10 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
                 <style> 
 
                 .popup-content {
-                    border-radius: 10px; /* Arrondir les coins */
+                    border-radius: 15px; /* Arrondir les coins */
                     background-color: rgba(255, 255, 255, 0.9); /* Fond légèrement transparent */
                     backdrop-filter: blur(10px); /* Effet de flou derrière le popup */
-                   
-                    padding: 15px; /* Espace intérieur */
+                    padding: 10px; /* Espace intérieur */
                   }
                   
                   .popup-content h3 {
@@ -74,6 +73,10 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
                     padding: 10px; /* Ajoute un peu de padding autour du texte pour l'esthétique */
                     font-size: 1.5em; /* Ajuste la taille de la police si nécessaire */
                     color: #333; /* Couleur du texte, à ajuster selon votre design */
+                  }
+
+                  .popup-content p{
+                    text-align: justify;
                   }
                   /* Style pour l'image à l'intérieur du popup pour éviter le débordement */
                   .popup-content img {
