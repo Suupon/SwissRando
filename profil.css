@@ -1,0 +1,18 @@
+
+#profil {
+    width: 30%;
+    position: absolute;
+    top: 15px; /* Ajustez la distance depuis le haut de la bannière */
+    margin-left: 1300px; /* Ajustez la distance depuis la droite de la bannière */
+    
+}
+
+#profil a {
+    color: aliceblue;
+    text-decoration: none;
+    
+}
+
+/* ... Vos autres styles ... */
+
+
