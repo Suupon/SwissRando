@@ -134,11 +134,6 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
             });
         });
         
-        function submitRating() {
-            var rating = document.getElementById('rating').value;
-            // Code here to handle the rating submission
-            console.log("Rating submitted: " + rating);
-        }
         
 })
     .catch(error => {
@@ -207,9 +202,6 @@ function updateRoute() {
 }
 
 
-var popup = new mapboxgl.Popup({
-  closeButton: false,
-  closeOnClick: false
-});
+
 
 
