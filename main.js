@@ -111,18 +111,7 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
                   }
 
                   .mapboxgl-popup-close-button {
-                    font-size: 64px; /* Taille plus grande pour la croix */
-                    color: #007bff; /* Couleur de la croix */
-                    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.7); /* Ombre pour améliorer la visibilité */
-                    opacity: 0.8; /* Légèrement transparente pour s'intégrer avec le design */
-                    margin-right : 5%;
-                    margin-top: 5%;
-                  }
-                  
-                  .mapboxgl-popup-close-button:hover {
-                    color: #0056b3; /* Couleur au survol */
-                    opacity: 1; /* Opacité totale au survol */
-                    cursor: pointer; /* Curseur en forme de main pour indiquer un élément cliquable */
+                   display:none;
                   }
                   
                  </style> 
