@@ -376,5 +376,12 @@ function updateRoute(segment) {
    
             });
 
-   
+        
+            function demanderDeconnexion() {
+                var confirmation = confirm("Voulez-vous vraiment vous déconnecter ?");
+                if (confirmation) {
+                    window.location.href = "logout.php";
+                }
+            }
+      
     
