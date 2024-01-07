@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Préparation de la requête pour éviter les injections SQL
     $stmt = $con->prepare("INSERT INTO data (Nom, Prenom, Email, Civilite, MDP) VALUES (?, ?, ?, ?, ?)");
-    $hashed_mdp = password_hash($mdp, PASSWORD_DEFAULT); // Hashage du mot de passe
-    $stmt->bind_param("sssss", $name, $prenom, $email, $civilite, $hashed_mdp);
+    $stmt->bind_param("sssss", $name, $prenom, $email, $civilite, $mdp);
 
     if ($stmt->execute()) {
         // Redirection vers la page d'accueil
@@ -25,4 +24,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $con->close();
 }
 ?>
-
