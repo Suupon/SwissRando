@@ -49,11 +49,13 @@ body {
     position: relative;
 }
 
-
+#tabs-3 .haut{
+    border: 5px solid black;
+}
 .box1 {
     /* Styles pour .box1 */
     position: absolute;
-    top: 30%; /* Ajustez la position verticale selon vos besoins */
+    top: 10%; /* Ajustez la position verticale selon vos besoins */
     z-index: 1; /* Mettez .box1 en arrière-plan */
     margin-left: 30%;
     font-size: 3.5em;
@@ -64,11 +66,11 @@ body {
     width: 200px;
     height: 200px;
     margin-left: 43%;
-    margin-top: 20%;
-    margin-bottom: 300%;
+    margin-top: 30%;
+  
     transform-style:preserve-3d;
     animation: animate 20s linear infinite;
-    border: 20 px solid black;
+    border: 20px solid black;
 
 }
 
@@ -104,7 +106,40 @@ body {
 
 }
 
+#album {
+    width: 100%;
+    margin-left: 10%;
+    margin-top: 20%;
+    border: 5px solid black;
+}
 
+#sorting-options {
+    margin-bottom: 20px;
+}
+
+#photo-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); 
+    gap: 20px; 
+}
+
+.photo {
+    width: 200px;
+    margin: 10px;
+    
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+}
+
+
+#photo-container span img {
+    width: 200px; /* Largeur fixe */
+    height: 200px; /* Hauteur fixe */
+    object-fit: cover; /* Redimensionne l'image tout en conservant les proportions */
+}
 /******************* FIN Tabs-3***************/
 
 
