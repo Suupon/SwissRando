@@ -1,6 +1,7 @@
 
 mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
-   
+
+var lakeData; // Variable globale pour les données GeoJSON
 window.onload=  map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/streets-v11',
@@ -14,6 +15,7 @@ var coordinates = []; // Liste des coordonnées des points cliqués
 fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
     .then(response => response.json())
     .then(data => {
+        lakeData = data; // Stockez les données chargées ici
         map.on('click', function(e) {
             var features = map.queryRenderedFeatures(e.point, {
                 layers: ['markers']
@@ -140,68 +142,190 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
         console.error('Erreur lors du chargement du GeoJSON:', error);
     });
 
+    var segments = []; // Tableau pour stocker les segments de route
+var nextSegmentId = 0; // Identifiant pour le prochain segment
+var startCoords = null;
+var coordinates = []; // Tableau pour stocker toutes les coordonnées
+
 function onMarkerClick(marker) {
     var clickedCoordinate = marker.geometry.coordinates;
-
-    // Ajouter la nouvelle coordonnée à la liste des coordonnées des points
-    coordinates.push(clickedCoordinate);
-
-    // Mettre à jour le tracé
-    updateRoute();
+    if (!startCoords) {
+        startCoords = clickedCoordinate;
+    }
+    if (coordinates.length > 0) {
+        // Créer un nouveau segment
+        var segment = {
+            id: nextSegmentId++,
+            start: coordinates[coordinates.length - 1],
+            end: clickedCoordinate
+        };
+        segments.push(segment);
+        updateRoute(segment);
+    }
+    coordinates.push(clickedCoordinate); // Ajouter au tableau général
 }
 
-function updateRoute() {
-    // Si la couche de tracé existe, la supprimer
-    if (map.getLayer('route')) {
-        map.removeLayer('route');
-    }
+function updateRoute(segment) {
+    // Générer l'URL pour la requête Directions
+    var url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' +
+              segment.start.join(',') + ';' + segment.end.join(',') +
+              '?geometries=geojson&access_token=' + mapboxgl.accessToken;
 
-    // Si la source de tracé existe, la supprimer
-    if (map.getSource('route')) {
-        map.removeSource('route');
-    }
-
-    // Si nous avons au moins deux points, créer un tracé
-    if (coordinates.length >= 2) {
-        var url = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + coordinates.join(';') +
-                  '?geometries=geojson&access_token=' + mapboxgl.accessToken;
-
-        // Effectuer la requête Directions
-        fetch(url)
-            .then(response => response.json())
-            .then(data => {
-                // Ajouter la source du tracé
-                map.addSource('route', {
-                    type: 'geojson',
-                    data: {
-                        type: 'Feature',
-                        properties: {},
-                        geometry: data.routes[0].geometry
-                    }
-                });
-
-                // Ajouter la couche de tracé
-                map.addLayer({
-                    id: 'route',
-                    type: 'line',
-                    source: 'route',
-                    layout: {
-                        'line-join': 'round',
-                        'line-cap': 'round'
-                    },
-                    paint: {
-                        'line-color': '#B63E24',
-                        'line-width': 5
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Erreur lors de la requête Directions:', error);
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            map.addSource('route-' + segment.id, {
+                type: 'geojson',
+                data: data.routes[0].geometry
             });
+
+            map.addLayer({
+                id: 'route-' + segment.id,
+                type: 'line',
+                source: 'route-' + segment.id,
+                layout: {
+                    'line-join': 'round',
+                    'line-cap': 'round'
+                },
+                paint: {
+                    'line-color': '#B63E24',
+                    'line-width': 5
+                }
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors de la requête Directions:', error);
+        });
+}
+    map.on('click', function(e) {
+        var features = map.queryRenderedFeatures(e.point, { layers: segments.map(s => 'route-' + s.id) });
+        if (features.length > 0) {
+            var segmentId = parseInt(features[0].layer.id.replace('route-', ''));
+            removeSegment(segmentId);
+        }
+    });
+
+    
+    
+    function removeSegment(segmentId) {
+        var segment = segments.find(s => s.id === segmentId);
+        if (!segment) return;
+    
+        if (map.getLayer('route-' + segmentId)) {
+            map.removeLayer('route-' + segmentId);
+        }
+        if (map.getSource('route-' + segmentId)) {
+            map.removeSource('route-' + segmentId);
+        }
+    
+        // Supprimer les points de début et de fin du segment de la liste des points cliqués
+        coordinates = coordinates.filter(coord => 
+            JSON.stringify(coord) !== JSON.stringify(segment.start) && 
+            JSON.stringify(coord) !== JSON.stringify(segment.end));
+    
+        segments = segments.filter(s => s.id !== segmentId);
     }
+
+
+    //Enregistrer l'itinéraire
+
+    function findNearestLake(lakes, point) {
+        let nearestLake = null;
+        let minDistance = Number.MAX_VALUE;
+    
+        lakes.features.forEach(lake => {
+            const lakeCoords = lake.geometry.coordinates;
+            const distance = getDistance(point, lakeCoords);
+    
+            if (distance < minDistance) {
+                nearestLake = lake;
+                minDistance = distance;
+            }
+        });
+    
+        return nearestLake;
+    }
+    
+    function getDistance(point1, point2) {
+        // Calcul simple de la distance euclidienne
+        const dx = point1[0] - point2[0];
+        const dy = point1[1] - point2[1];
+        return Math.sqrt(dx * dx + dy * dy);
+    }
+    
+
+
+     // Genérer les tableaux d'itinéraires
+
+     function generateRouteTables(step,index) {
+        // Générer le tableau HTML pour l'itinéraire
+    var tableHtml = '<table><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>';
+    itinerary.forEach((step, index) => {
+        tableHtml += `<tr><td>${index + 1}</td><td>${step.lakeName}</td><td><input type='text'/></td></tr>`;
+    });
+    tableHtml += '</table>';
+
+    // Ajouter le tableau à l'onglet 'Classement'
+    document.getElementById('tabs-2').innerHTML += tableHtml;
+   
+  }
+
+  function saveRoute() {
+    var itinerary = [];
+
+    if (startCoords) {
+        var nearestStartLake = findNearestLake(lakeData, startCoords);
+        if (nearestStartLake) {
+            itinerary.push({ Etape: itinerary.length + 1, lakeName: nearestStartLake.properties.name });
+        }
+    }
+
+    segments.forEach(segment => {
+        var endCoords = segment.end;
+        var nearestLake = findNearestLake(lakeData, endCoords);
+        if (nearestLake) {
+            itinerary.push({ Etape: itinerary.length + 1, lakeName: nearestLake.properties.name });
+        }
+    });
+
+    if (itinerary.length > 0) {
+        alert("Itinéraire enregistré: " + JSON.stringify(itinerary));
+
+        // Générer et ajouter le tableau HTML
+        var tableHtml = '<table><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>';
+        itinerary.forEach((step, index) => {
+            tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='text'/></td></tr>`;
+        });
+        tableHtml += '</table>';
+        document.getElementById('tabs-2').innerHTML += tableHtml;
+
+    } else {
+        alert("Aucun lac correspondant trouvé pour l'itinéraire.");
+    }
+
+    // Nettoyer les segments existants
+    segments.forEach(segment => {
+        if (map.getLayer('route-' + segment.id)) {
+            map.removeLayer('route-' + segment.id);
+        }
+        if (map.getSource('route-' + segment.id)) {
+            map.removeSource('route-' + segment.id);
+        }
+    });
+
+    // Réinitialiser les données
+    segments = [];
+    coordinates = [];
+    nextSegmentId = 0;
+    startCoords = null;
 }
 
+    
+    
+    document.getElementById('save-route-btn').addEventListener('click', saveRoute);
 
 
+   
 
-
+   
+    
