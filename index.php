@@ -4,42 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="form.css">
-    <title>inscription</title>
+    <title>Connexion</title>
 </head>
+<body>
+    <div class="container">
+        <form action="login_process.php" method="post">
+            <div>
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Entrer votre email">
+            </div>
 
-<body> 
-    <div class = "container"> 
-     <form action="connect.php" method="post">   
-    </div>
+            <div>
+                <label>Mot de Passe</label>
+                <input type="password" name="mdp" placeholder="Entrer votre Mot de passe">
+            </div>
 
-    <div>
-    <label>Civilité</label>
-    <input type="radio" name= "civilite">Mr
-    <input type="radio" name= "civilite">Mme
-    </div>
-    <br> </br>
-    <div>
-    <label>Nom</label>
-    <input type="text" name= "name" placeholder = "Entrer votre nom">
-    </div>
+            <div class="btn">
+                <button type="submit">Se Connecter</button>
+            </div>
+        </form>
 
-    <div>
-    <label>Prénom</label>
-    <input type="text" name= "prenom" placeholder = "Entrer votre prénom">
-    </div>
-
-    <div>
-    <label>Email</label>
-    <input type="text" name= "email" placeholder = "Entrer votre email">
-    </div>
-
-    <div>
-    <label>Mot de Passe </label>
-    <input type="password" name= "mdp" placeholder = "Entrer votre Mot de passe">
-    </div>
-
-    <div class="btn">
-        <button type= "submit"> Envoyer </button>
+        <p>Vous n'avez pas de compte ? <a href="inscription.php">S'inscrire</a></p>
     </div>
 </body>
 </html>
