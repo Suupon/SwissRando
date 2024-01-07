@@ -6,8 +6,7 @@ body {
 
 
 #tabs{
-
-    height: 900px;  
+    height: 1200px;  
 }
 /******************* Tabs-1 ***************/
 
@@ -38,7 +37,7 @@ body {
 
 .ui-tabs .ui-tabs-panel{
 
-    height: 950px; 
+    height: 3000px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,8 +65,10 @@ body {
     height: 200px;
     margin-left: 43%;
     margin-top: 20%;
+    margin-bottom: 300%;
     transform-style:preserve-3d;
     animation: animate 20s linear infinite;
+    border: 20 px solid black;
 
 }
 
@@ -103,11 +104,7 @@ body {
 
 }
 
+
 /******************* FIN Tabs-3***************/
 
 
-#clearRouteBtn {
-    color: red !important;
-    z-index: 100000;
-    position: relative;
-}

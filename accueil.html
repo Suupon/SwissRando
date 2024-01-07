@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte Interactive avec Mapbox</title>
     <link rel="stylesheet" href="accueil.css">
+    <link rel="stylesheet" href="galeriesection2.css">
+    <link rel="stylesheet" href="profil.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Patua One' rel='stylesheet'>
 
     <!--css-->
     <link href='https://api.mapbox.com/mapbox.js/v3.3.1/mapbox.css' rel='stylesheet' />
     
-
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 
     
@@ -19,6 +21,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
@@ -49,16 +52,24 @@
             });
         });
     </script>
-   
-        
+  
 </head>
 <body>
+    
+    <div class="banner">
+        <img src="images/bannière.png" alt="Bannière">
+    
+        <div id="profil"> 
+            <a href="profil.php"><u>Accéder à votre Profil >> </u></a> 
+        </div>
+    </div>
+    
 
     <!-- LES ONLGLETS -->
     <div id="tabs">
     <ul>
       <li><a href="#tabs-1">Carte</a></li>
-      <li><a href="#tabs-2">Profil</a></li>
+      <li><a href="#tabs-2">Classement</a></li>
       <li><a href="#tabs-3">Galerie</a></li>
     </ul>
     
@@ -70,31 +81,119 @@
     </div>
 
     <!--ONGLET Profil-->
+    <!-- ONGLET Profil -->
     <div id="tabs-2">
-      <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ...</p>
+      
     </div>
+
 
     <!--ONLGET Galerie-->
     <div id="tabs-3">
         
-        <div class="box">
-            <span style= "--i: 1;" > <img src="images/Greifensee.jpg"></span>
-            <span style= "--i: 2;" > <img src="images/Lac_4Cantons.jpg"></span>
-            <span style= "--i: 3;" > <img src="images/lac_constance.jpeg"></span>
-            <span style= "--i: 4;" > <img src="images/lac_sihlsee.jpg"></span>
-            <span style= "--i: 5;" > <img src="images/lac-leman.jpg"></span>
-            <span style= "--i: 6;" > <img src="images/lac-neuchatel.jpg"></span>
-            <span style= "--i: 7;" > <img src="images/Zuger_See.jpg"></span>
-            <span style= "--i: 8;"> <img src="images/lac-sempachersee.jpg"></span>
+            <div class="box">
+                <span style= "--i: 1;" > <img src="images/Greifensee.jpg"></span>
+                <span style= "--i: 2;" > <img src="images/Lac_4Cantons.jpg"></span>
+                <span style= "--i: 3;" > <img src="images/lac_constance.jpeg"></span>
+                <span style= "--i: 4;" > <img src="images/lac_sihlsee.jpg"></span>
+                <span style= "--i: 5;" > <img src="images/lac-leman.jpg"></span>
+                <span style= "--i: 6;" > <img src="images/lac-neuchatel.jpg"></span>
+                <span style= "--i: 7;" > <img src="images/Zuger_See.jpg"></span>
+                <span style= "--i: 8;"> <img src="images/lac-sempachersee.jpg"></span>
 
-        </div>
-        <div class="box1">
-            <h1 class="titregalerie"> GALERIE </h1>
-        </div>
-    </div>
-    </div>
+            </div>
+            <div class="box1">
+                <h1 class="titregalerie"> GALERIE </h1>
+            </div>
+        
+
+        <div id="album">
+            <div id="sorting-options">
+                <label for="sort-location">Trier par lieu:</label>
+                <select id="sort-location">
+                    <option value="all">Tous</option>
+                    <option value="Greifensee">Lac de Greifensee</option>
+                    <option value="4Cantons">Lac des 4 Cantons</option>
+                    <option value="Constance">Lac de Constance</option>
+                    <option value="Sihlsee">Lac Sihlsee</option>
+                    <option value="leman">Lac Leman</option>
+                    <option value="neuchatel">Lac Neuchatel</option>
+                    <option value="Zuger_See">Lac ZugerSee</option>
+                    <option value="lac-sempachersee">Lac Sempachersee</option>
+                    <!-- Ajoutez d'autres options pour différents lieux -->
+                </select>
     
+                <label for="sort-date">Trier par date:</label>
+                <select id="sort-date">
+                    <option value="all">Toutes les dates</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                    <!-- Ajoutez d'autres options pour différentes dates -->
+                </select>
+            </div>
+    
+            <div id="photo-container">
+                <span class="photo" data-location="Greifensee" data-date="2023-01-15"><img src="images/Greifensee.jpg" alt="Greifensee 1"></span>
+                <span class="photo" data-location="Greifensee" data-date="2023-01-15"><img src="images/Greifensee2.jpeg" alt="Greifensee 2"></span>
+                <span class="photo" data-location="Greifensee" data-date="2023-01-15"><img src="images/Greifensee3.jpg" alt="Greifensee 3"></span>
+                <span class="photo" data-location="Greifensee" data-date="2023-01-15"><img src="images/Greifensee4.jpg" alt="Greifensee 4"></span>
+                <span class="photo" data-location="Greifensee" data-date="2023-01-15"><img src="images/Greifensee5.jpg" alt="Greifensee 5"></span>
+                <span class="photo" data-location="Greifensee" data-date="2023-01-15"><img src="images/Greifensee6.jpg" alt="Greifensee 6"></span>
+
+                <span class="photo" data-location="4Cantons" data-date="2023-02-20"><img src="images/Lac_4Cantons.jpg" alt="4Cantons 1"></span>
+                <span class="photo" data-location="4Cantons" data-date="2023-02-20"><img src="images/Lac_4Cantons2.jpg" alt="4Cantons 2"></span>
+                <span class="photo" data-location="4Cantons" data-date="2023-02-20"><img src="images/Lac_4Cantons3.jpg" alt="4Cantons 3"></span>
+                <span class="photo" data-location="4Cantons" data-date="2023-02-20"><img src="images/Lac_4Cantons4.jpg" alt="4Cantons 4"></span>
+
+
+                <span class="photo" data-location="Constance" data-date="2022-12-10"><img src="images/lac_constance.jpeg" alt="Constance 1"></span>
+                <span class="photo" data-location="Constance" data-date="2022-12-10"><img src="images/lac_constance2.jpg" alt="Constance 2"></span>
+                <span class="photo" data-location="Constance" data-date="2022-12-10"><img src="images/lac_constance3.jpeg" alt="Constance 4"></span>
+
+                <span class="photo" data-location="Sihlsee" data-date="2022-12-15"><img src="images/lac_sihlsee.jpg" alt="Sihlsee 1"></span>
+
+                <span class="photo" data-location="leman" data-date="2023-01-15"><img src="images/lac-leman.jpg" alt="leman 1"></span>
+
+                <span class="photo" data-location="neuchatel" data-date="2023-02-20"><img src="images/lac-neuchatel.jpg" alt="neuchatel 1"></span>
+                <span class="photo" data-location="neuchatel" data-date="2023-02-20"><img src="images/lac-neuchatel2.jpg" alt="neuchatel 2"></span>
+
+                <span class="photo" data-location="Zuger_See" data-date="2022-12-10"><img src="images/Zuger_See.jpg" alt="Zuger_See 1"></span>
+                <span class="photo" data-location="lac-sempachersee" data-date="2022-12-15"><img src="images/lac-sempachersee.jpg" alt="lac-sempachersee 1"></span>
+                
+                <!-- Ajoutez d'autres photos avec des lieux et des dates différentes -->
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    var sortLocation = document.getElementById('sort-location');
+                    var sortDate = document.getElementById('sort-date');
+        
+                    sortLocation.addEventListener('change', handleSort);
+                    sortDate.addEventListener('change', handleSort);
+        
+                    function handleSort() {
+                        var selectedLocation = sortLocation.value;
+                        var selectedDate = sortDate.value;
+        
+                        var photos = document.querySelectorAll('.photo');
+        
+                        photos.forEach(function (photo) {
+                            var location = photo.getAttribute('data-location');
+                            var date = photo.getAttribute('data-date');
+        
+                            if ((selectedLocation === 'all' || selectedLocation === location) &&
+                                (selectedDate === 'all' || selectedDate === date)) {
+                                photo.style.display = 'block';
+                            } else {
+                                photo.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            </script>
+     </div>       
+    </div>
+    </div>
+      
     </body>
 </html>
-
 

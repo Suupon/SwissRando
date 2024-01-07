@@ -1,5 +1,8 @@
 body {
-    background-color: #0d47a1; /* Dark blue background */
+    width:100%;
+	background-image:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),url(images/lac-neuchatel.jpg);
+    background-attachment: fixed;
+    background-position:center;
     font-family: Arial, sans-serif;
 }
 
