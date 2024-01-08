@@ -37,7 +37,7 @@
      
     <div class="deco">
         <?php
-        session_start();
+       
         if (isset($_SESSION['email'])) {
             echo '<div id="profil">';
             echo '<a href="accueil.html"><u> Retour Page d\'Accueil >> </u></a>';
