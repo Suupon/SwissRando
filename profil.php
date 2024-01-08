@@ -12,7 +12,6 @@
             }
         }
     </script>
-
 </head>
 <body> 
 
@@ -21,15 +20,17 @@
     
         <div id="profil"> 
             <a href="accueil.html"><u> Retour Page d'Accueil >> </u></a>
+            
+            <?php
+            session_start();
+            if (isset($_SESSION['email'])) {
+                echo '<div id="deconnexion">';
+                echo '<a href="#" onclick="demanderDeconnexion()">Se Déconnecter</a>';
+                echo '</div>';
+            }
+            ?>
         </div>
-        <?php
-        session_start();
-        if (isset($_SESSION['email'])) {
-            echo '<div id="deconnexion">';
-            echo '<a href="#" onclick="demanderDeconnexion()">Se Déconnecter</a>';
-            echo '</div>';
-        }
-        ?>
+
     </div>
 
     <div id="information"> 
