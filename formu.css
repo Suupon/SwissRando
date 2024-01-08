@@ -1,0 +1,18 @@
+body {
+    width: 100%;
+    background-image: url(images/fond.jpg);
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #5e646b; /* Slightly lighter blue background for the form */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
