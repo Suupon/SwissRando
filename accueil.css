@@ -5,6 +5,14 @@ body {
     background-color: #E8E8E8;
 }
 
+#profil img {
+    width: 30px;
+    height: 30px; 
+    margin-left: 30%;
+}
+
+/*CSS Du tabs*/
+
 #tabs .ui-tabs-nav {
     background: #009879; /* Couleur de fond pour les onglets */
     border-bottom: 4px solid #00795f; /* Bordure plus foncée pour le bas */
@@ -38,10 +46,11 @@ body {
 #tabs{
     border-radius: 5px; /* Bordures arrondies pour le contenu */
 }
+
+
 /******************* Tabs-1 ***************/
 
-#tabs-1{
-   
+#tabs-1{ 
     height: 850px; 
 
 }
