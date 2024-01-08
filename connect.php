@@ -1,37 +1,23 @@
 <?php
-session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name = $_POST['name'];
+    $prenom = $_POST['prenom'];
     $email = $_POST['email'];
+    $civilite = $_POST['civilite'];
     $mdp = $_POST['mdp'];
 
     $con = new mysqli('localhost', 'root', 'root', 'form');
 
-    // Vérification de la connexion à la base de données
-    if ($con->connect_error) {
-        die("Échec de la connexion à la base de données: " . $con->connect_error);
-    }
+    // Préparation de la requête pour éviter les injections SQL
+    $stmt = $con->prepare("INSERT INTO data (Nom, Prenom, Email, Civilite, MDP) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssss", $name, $prenom, $email, $civilite, $mdp);
 
-    // Sélection de l'utilisateur par son email
-    $stmt = $con->prepare("SELECT Email, MDP, Nom, Prenom, Civilite FROM data WHERE Email = ?");
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $stmt->bind_result($db_email, $db_mdp, $db_nom, $db_prenom, $db_civilite);
-    $stmt->fetch();
-
-    // Vérification du mot de passe
-    if ($db_email && $mdp == $db_mdp) {
-        // Mot de passe correct
-        $_SESSION['email'] = $db_email;
-        $_SESSION['nom'] = $db_nom;
-        $_SESSION['prenom'] = $db_prenom;
-        $_SESSION['civilite'] = $db_civilite;
-
+    if ($stmt->execute()) {
         // Redirection vers la page d'accueil
-        header('Location: accueil.html');
+        header('Location: login.php');
         exit();
     } else {
-        // Email ou mot de passe incorrect
-        echo "Email ou mot de passe incorrect.";
+        die("Erreur lors de l'insertion : " . $stmt->error);
     }
 
     $stmt->close();
