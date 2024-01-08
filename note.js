@@ -1,5 +1,19 @@
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    var tableHtml = localStorage.getItem('itineraryTable');
+    if (tableHtml) {
+        document.getElementById('tabs-2').innerHTML = tableHtml;
+    }
+});
+
+
+
 var submitButton = document.querySelector("#submit-btn");
-console.log(submitButton)
+submitButton.addEventListener('click', function() {
+    console.log('Le bouton a été cliqué');
+});
+
             submitButton.addEventListener('click', function submitratings() {
 
                 //Vérifie si toutes les case sont remplies

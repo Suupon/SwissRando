@@ -303,7 +303,7 @@ function updateRoute(segment) {
             tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='number' min='1' max='5' /></td></tr>`;
         });
         tableHtml += '</table>';
-        document.getElementById('tabs-2').innerHTML += tableHtml;
+        localStorage.setItem('itineraryTable', tableHtml);
 
     } else {
         alert("Aucun lac correspondant trouvé pour l'itinéraire.");
