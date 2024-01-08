@@ -336,45 +336,7 @@ function updateRoute(segment) {
     document.getElementById('save-route-btn').addEventListener('click', saveRoute);
         
 
-    var submitButton = document.querySelector("#submit-btn");
-    console.log(submitButton)
-            submitButton.addEventListener('click', function submitratings() {
-                console.log("jsuis ici")
-                var ratings = [];
-                var rows = document.querySelectorAll('#tabs-2 table tr');
-                rows.forEach((row, index) => {
-                    if (index > 0) { // Ignorer l'en-tête du tableau
-                        var lakeName = row.cells[1].innerText;
-                        var rating = row.cells[2].querySelector('input').value;
-                        ratings.push({ lakeName: lakeName, note: rating });
-                    }
-                });
-                var jsonRatings = JSON.stringify(ratings);
-                console.log(jsonRatings).
-               
-                fetch('Notes.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: jsonRatings // les données collectées
-                })
-                .then(response => response.json())
-                .then(data => {
-                    // Traiter la réponse du serveur ici
-                    console.log(data);
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
-            
-            
-                var ratingInputs = document.querySelectorAll('#tabs-2 table input[type="number"]');
-                ratingInputs.forEach(function(input) {
-                    input.disabled = true;
-                });
-   
-            });
+    
 
    
     
