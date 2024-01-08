@@ -7,6 +7,11 @@
     <title>Connexion</title>
 </head>
 <body>
+    <div class="titre"> 
+        <h1>
+            SWIS'sRANDO
+        </h1>
+    </div>
     <div class="container">
         <form action="login_process.php" method="post">
             <div>

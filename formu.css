@@ -1,18 +1,100 @@
 body {
-    width: 100%;
-    background-image: url(images/fond.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(images/fond.jpg);
+    background-color: #222222;
     background-attachment: fixed;
-    background-position: center;
     background-size: cover;
     font-family: Arial, sans-serif;
 }
 
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #5e646b; /* Slightly lighter blue background for the form */
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.titre {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 1%;
 }
 
+.titre h1 {
+    font-family: sans-serif;
+    font-size: 5em;
+    color: #fff;
+    font-weight: lighter;
+}
+
+.container {
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    margin-left: 23%;
+}
+
+form {
+    width: 100%;
+    margin-left: 3%;
+}
+
+label {
+    display: block;
+    margin-bottom: 3%;
+    color: #fff;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="radio"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+.btn {
+    text-align: center;
+}
+
+button {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-top: 8%;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.civ {
+    display: flex;
+    align-items: center;
+}
+
+.civ label {
+    margin-right: 10px;
+}
+
+.civ input[type="radio"] {
+    margin-right: 5px;
+}
+
+.container p{
+    color: #fff;
+    margin-top: 10%;
+    margin-left: 34%;
+}
+
+a {
+    color: #b367c3; /* Violet clair */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #87409e; /* Violet plus foncé au survol */
+}

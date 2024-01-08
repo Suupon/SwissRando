@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($stmt->execute()) {
         // Redirection vers la page d'accueil
-        header('Location: accueil.html');
+        header('Location: login.php');
         exit();
     } else {
         die("Erreur lors de l'insertion : " . $stmt->error);
