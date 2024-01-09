@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carte Interactive avec Mapbox</title>
-    <link rel="stylesheet" href="accueil.css">
-    <link rel="stylesheet" href="galeriesection2.css">
-    <link rel="stylesheet" href="profil.css">
+    <link rel="stylesheet" href="accueil_css.css">
+    <link rel="stylesheet" href="profil_css.css">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Patua One' rel='stylesheet'>
 
@@ -78,16 +77,16 @@
     
     <!--ONLGET Carte-->
     <div id="tabs-1">
-      <div id="map"></div>
-      
-      <button id="save-route-btn">Enregistrer votre itinéraire</button>
-      <a href="Itineraires.html">Voir vos Itineraires</a>
-      <script src="main.js"></script>
+        <button class="custom-button btn-primary" id="save-route-btn" >Enregistrer Mon itinéraire</button>
+        <button class="custom-button btn-primary" id="itineraires-btn" > Mes Itinéraires</button>
+
+        <div id="map"></div>
+        <script src="main.js"></script>
     </div>
 
     <!-- ONGLET Profil -->
     <div id="tab">
-        <button id="submit-btn">Soumettre les Notes</button>
+        <button class=" custom-button btn-primary" id="submit-btn">Soumettre les Notes</button>
         <script src="note.js"></script>
         
     </div>
@@ -129,13 +128,6 @@
                     <!-- Ajoutez d'autres options pour différents lieux -->
                 </select>
     
-                <label for="sort-date">Trier par date:</label>
-                <select id="sort-date">
-                    <option value="all">Toutes les dates</option>
-                    <option value="2023">2023</option>
-                    <option value="2022">2022</option>
-                    <!-- Ajoutez d'autres options pour différentes dates -->
-                </select>
             </div>
     
             <div id="photo-container">
