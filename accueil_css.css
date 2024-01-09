@@ -69,6 +69,7 @@ body {
     color: #005E4C; 
     border: 2px solid #005E4C;
     margin-bottom: 1%;
+   
 }
 
 #save-route-btn {
@@ -76,6 +77,11 @@ body {
     border-color: #005E4C; 
     margin-right: 50%;
     margin-left: 10%;
+}
+
+#submit-btn{
+    margin-left: 10%;
+    margin-right: 50%;
 }
 
 
