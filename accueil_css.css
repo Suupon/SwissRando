@@ -96,12 +96,14 @@ body {
 
 /******************* Tabs-2 ***************/
 #tabs-2 table {
+    border-radius: 5px;
     border-collapse: separate;
     border-spacing: 0;
-    width: 100%;
+    width: 90%; /* Ajustez la largeur selon vos besoins */
+    max-width: 1060px; /* Ajustez la largeur maximale selon vos besoins */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px 0;
-    margin-bottom : 50px
+    margin: 20px auto; /* Centrer le tableau */
+    margin-bottom: 50px;
 }
 
 #tabs-2 th, #tabs-2 td {
