@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formu.css">
+    <link rel="stylesheet" href="form.css">
     <title>inscription</title>
     <script>
     function validateForm() {
@@ -95,6 +95,7 @@
             </div>
     
         </form>
+        <p> Vous n'avez déja un compte ? <a href="login.php">Se connecter</a></p>
     </div>
 
 </body>

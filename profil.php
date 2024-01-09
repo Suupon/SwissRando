@@ -25,7 +25,7 @@
             session_start();
             if (isset($_SESSION['email'])) {
                 echo '<div id="deconnexion">';
-                echo '<a href="#" onclick="demanderDeconnexion()">Se Déconnecter</a>';
+                echo '<button class="btn-primary" href="#" onclick="demanderDeconnexion()">Se Déconnecter</button>';
                 echo '</div>';
             }
             ?>

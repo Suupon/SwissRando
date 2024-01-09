@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="formu.css">
+    <link rel="stylesheet" href="form.css">
     <title>Connexion</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
             </div>
         </form>
 
-        <p>Vous n'avez pas de compte ? <a href="index.php">S'inscrire</a></p>
+        
     </div>
 </body>
 </html>
