@@ -1,5 +1,5 @@
 
-mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHFqaHgwMzUwNHE5MmxwOTFqeG9paTZqIn0.jFmKdstMnKX-Jdrj04s8XQ'; 
+mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHI2cmJwbmEyODVyMnJvMWUxejRqcmp1In0.OyWDMARliKpZq3zLlt4T_w'; 
 
 
 
@@ -272,11 +272,12 @@ function updateRoute(segment) {
    
   }
 
+  var tableCounter =0;
   function saveRoute() {
     var itinerary = [];
 
 
-    var tableCounter =0;
+    
     if (startCoords) {
         var nearestStartLake = findNearestLake(lakeData, startCoords);
         if (nearestStartLake) {
