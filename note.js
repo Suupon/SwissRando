@@ -40,7 +40,7 @@ var reinit = document.querySelector("#reinit");
     var submitButton = document.getElementById('submit-btn'); // Assurez-vous que cet ID correspond à votre bouton
 
     submitButton.addEventListener('click', function submitratings() {
-        // Vérifier si toutes les cases sont remplies
+        // Vérification que toutes les cases sont remplies
         var ratingInputs = document.querySelectorAll('#tabs-2 table input[type="number"]');
         var allFilled = true;
     
@@ -54,34 +54,34 @@ var reinit = document.querySelector("#reinit");
             alert("Veuillez remplir toutes les notes avant de soumettre.");
             return; // Arrête l'exécution de la fonction
         }
-      // Collecter et sauvegarder les notes
-      document.querySelectorAll('#' + tableId + ' tr').forEach((row, index) => {
-        if (index > 0) {
-            var lakeName = row.cells[1].innerText;
-            var rating = parseInt(row.cells[2].querySelector('input').value, 10);
-            ratings.push({ lakeName: lakeName, note: rating });
-
-            // Remplacer l'input par un span
-            row.cells[2].innerHTML = `<span>${rating}</span>`;
-        }
-    });
-
-    // Sauvegarder les notes dans localStorage
-    localStorage.setItem(tableId + '_notes', JSON.stringify(ratings));
-    localStorage.setItem(tableId + '_submitted', 'true');
-        var jsonRatings = JSON.stringify(ratings);
-        console.log(jsonRatings);
-
-        var tableId = localStorage.getItem('lastTableId');
-        localStorage.setItem(tableId + '_submitted', 'true');
-
     
+        var ratings = [];
+        var tableId = localStorage.getItem('lastTableId');
+        var rows = document.querySelectorAll('#' + tableId + ' tr');
+    
+        rows.forEach((row, index) => {
+            if (index > 0) { // Ignorer l'en-tête du tableau
+                var lakeName = row.cells[1].innerText.trim();
+                var inputElement = row.cells[2].querySelector('input');
+                if (inputElement) {
+                    var rating = parseInt(inputElement.value, 10);
+                    ratings.push({ lakeName: lakeName, note: rating });
+                    row.cells[2].innerHTML = `<span>${rating}</span>`; // Remplacer l'input par un span
+                }
+            }
+        });
+    
+        // Sauvegarde des notes dans localStorage
+        localStorage.setItem(tableId + '_notes', JSON.stringify(ratings));
+        localStorage.setItem(tableId + '_submitted', 'true');
+    
+        // Envoi des notes au serveur
         fetch('Notes.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: jsonRatings
+            body: JSON.stringify(ratings)
         })
         .then(response => response.json())
         .then(data => {
@@ -89,13 +89,6 @@ var reinit = document.querySelector("#reinit");
         })
         .catch((error) => {
             console.error('Error:', error);
-        });
-    
-        // Remplacer les inputs par des textes
-        ratingInputs.forEach(function(input) {
-            var textSpan = document.createElement('span');
-            textSpan.textContent = input.value;
-            input.parentNode.replaceChild(textSpan, input);
         });
     });
     
@@ -111,14 +104,15 @@ var reinit = document.querySelector("#reinit");
     
             if (isSubmitted && savedNotesString) {
                 var savedNotes = JSON.parse(savedNotesString);
+                var rows = table.querySelectorAll('tr');
     
-                table.querySelectorAll('tr').forEach((row, index) => {
+                rows.forEach((row, index) => {
                     if (index > 0) {
-                        var lakeName = row.cells[1].innerText;
+                        var lakeName = row.cells[1].innerText.trim();
                         var savedNote = savedNotes.find(note => note.lakeName === lakeName);
     
                         if (savedNote) {
-                            row.cells[2].innerHTML = `<span>${savedNote.note}</span>`;
+                            row.cells[2].innerHTML = `<span>${savedNote.note}</span>`; // Afficher la note en tant que texte
                         }
                     }
                 });
@@ -126,8 +120,8 @@ var reinit = document.querySelector("#reinit");
         });
     }
     
-            
-          
+  
+    
             
             
             

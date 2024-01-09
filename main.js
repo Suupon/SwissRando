@@ -1,7 +1,9 @@
 
 mapboxgl.accessToken ='pk.eyJ1IjoiaGVuZHJ5a2VseSIsImEiOiJjbHI2cmJwbmEyODVyMnJvMWUxejRqcmp1In0.OyWDMARliKpZq3zLlt4T_w'; 
 
-
+document.getElementById("itineraires-btn").addEventListener("click", function() {
+    window.location.href = "itineraires.html";
+});
 
 var lakeData; // Variable globale pour les données GeoJSON
 window.onload=  map = new mapboxgl.Map({
