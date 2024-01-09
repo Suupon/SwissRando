@@ -1,100 +1,122 @@
 body {
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(images/fond.jpg);
-    background-color: #222222;
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/fond.jpg');
+    background-color: #222;
     background-attachment: fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
-}
-
-.titre {
-    text-align: center;
-    margin-top: 2%;
-    margin-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 20px; /* Ajouter un peu de padding pour éviter que le formulaire touche les bords de la fenêtre */
+    
 }
 
 .titre h1 {
-    font-family: sans-serif;
-    font-size: 5em;
     color: #fff;
     font-weight: lighter;
+    margin-bottom: 20px;
 }
 
 .container {
-    background-color: transparent;
-    padding: 20px;
-    border-radius: 5px;
+    background-color: #DBDBDB;
+    padding: 40px;
+    border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    width: 50%;
-    margin-left: 23%;
+    width: 30%; /* Ajustez ceci selon la largeur désirée */
+    max-width: 600px;
+    margin: 20px;
+    overflow: auto; /* Ajoute un défilement si le contenu est trop grand */
+    border: 2px solid #00795f ;
 }
 
 form {
-    width: 100%;
-    margin-left: 3%;
+    margin: 0;
 }
 
 label {
     display: block;
-    margin-bottom: 3%;
-    color: #fff;
+    margin-bottom: 10px;
+    color: #000; /* Couleur du texte pour les labels */
 }
 
 input[type="text"],
 input[type="password"],
+input[type="email"],
 input[type="radio"] {
-    width: 100%;
+    
+    width: 94%; /* Réduire la largeur pour tenir compte du padding */
     padding: 10px;
-    margin-bottom: 6px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
-    border-radius: 3px;
+    border-radius: 10px;
+    background-color: #f3f3f3;
+    border: 2px solid #00795f ;
 }
 
 input[type="radio"] {
+    width: auto; /* Ne pas étirer les boutons radio */
     margin-right: 5px;
-}
-
-.btn {
+    border: 2px solid #00795f ;
     text-align: center;
 }
 
-button {
-    background-color: #007BFF;
+.btn button {
+    background-color: #00795f; /* Couleur d'arrière-plan similaire au tableau */
+
+   
     color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
-    margin-top: 4%;
+    margin-top: 20px;
 }
 
-button:hover {
+.btn button:hover {
     background-color: #0056b3;
 }
 
 .civ {
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .civ label {
     margin-right: 10px;
+    color: #000; /* Couleur du texte pour les labels de civilité */
 }
 
-.civ input[type="radio"] {
-    margin-right: 5px;
+
+/* Styles pour les boutons de soumission */
+.btn {
+    text-align: center; /* Centrer le bouton dans le conteneur */
+    margin-top: 10px;
 }
 
-.container p{
-    color: #fff;
-    margin-top: 10%;
-    margin-left: 34%;
+
+input[type="radio"] {
+    accent-color: #009879; /* Change la couleur du bouton radio (fonctionne sur certains navigateurs modernes) */
 }
 
-a {
-    color: #b367c3; /* Violet clair */
+
+
+
+/* Styles pour le lien de redirection */
+.container p {
+    margin-top: 15px;
+    text-align: center; /* Centrage du texte et des liens */
+}
+
+.container p a {
+    color: black; /* Couleur du lien similaire au tableau */
     text-decoration: none;
 }
 
-a:hover {
-    color: #87409e; /* Violet plus foncé au survol */
+.container p a:hover {
+    text-decoration: underline; /* Souligner le lien au survol */
+    color: #007a63; /* Une couleur légèrement plus foncée pour l'effet hover */
 }
