@@ -12,16 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         die("Échec de la connexion à la base de données: " . $con->connect_error);
     }
 
-    // Sélection de l'utilisateur par son email
-    $stmt = $con->prepare("SELECT Email, MDP, Nom, Prenom, Civilite FROM data WHERE Email = ?");
+    // Sélection de l'utilisateur et de son ID par son email
+    $stmt = $con->prepare("SELECT ID, Email, MDP, Nom, Prenom, Civilite FROM data WHERE Email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
-    $stmt->bind_result($db_email, $db_mdp, $db_nom, $db_prenom, $db_civilite);
+    $stmt->bind_result($db_id, $db_email, $db_mdp, $db_nom, $db_prenom, $db_civilite);
     $stmt->fetch();
 
     // Vérification du mot de passe
     if ($db_email && $mdp == $db_mdp) {
-        // Mot de passe correct
+        // Mot de passe correct, stockage des informations de l'utilisateur dans la session
         $_SESSION['email'] = $db_email;
         $_SESSION['nom'] = $db_nom;
         $_SESSION['prenom'] = $db_prenom;

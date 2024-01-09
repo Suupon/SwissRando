@@ -276,7 +276,7 @@ function updateRoute(segment) {
     var itinerary = [];
 
 
-    
+    var tableCounter =0;
     if (startCoords) {
         var nearestStartLake = findNearestLake(lakeData, startCoords);
         if (nearestStartLake) {
@@ -295,16 +295,18 @@ function updateRoute(segment) {
 
     
     if (itinerary.length > 0) {
+        var tableId = 'table_' + Date.now() + '_' + tableCounter++; // Créer un identifiant unique
+        var tableHtml = `<table id="${tableId}"><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>`;
 
-        
-        // Générer et ajouter le tableau HTML
-        var tableHtml = '<table><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>';
         itinerary.forEach((step, index) => {
             tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='number' min='1' max='5' /></td></tr>`;
         });
-        tableHtml += '</table>';
-        localStorage.setItem('itineraryTable', localStorage.getItem('itineraryTable')+ tableHtml);
 
+        tableHtml += '</table>';
+        localStorage.setItem('itineraryTable', localStorage.getItem('itineraryTable') + tableHtml);
+
+        // Stocker l'identifiant du tableau pour référence ultérieure
+        localStorage.setItem('lastTableId', tableId);
     } else {
         alert("Aucun lac correspondant trouvé pour l'itinéraire.");
     }
@@ -342,6 +344,7 @@ function updateRoute(segment) {
             function demanderDeconnexion() {
                 var confirmation = confirm("Voulez-vous vraiment vous déconnecter ?");
                 if (confirmation) {
+                    localStorage.setItem('itineraryTable', '')
                     window.location.href = "logout.php";
                 }
             }
