@@ -228,6 +228,36 @@ body {
     margin-bottom: 20px;
 }
 
+label {
+    margin-bottom: 5px;
+}
+
+#sort-location {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px; 
+}
+
+/* Style au survol */
+#sort-location:hover {
+    border-color: #009879;
+}
+
+/* Style au focus */
+#sort-location:focus {
+    outline: none;
+    border-color: #009879;
+    box-shadow: 0 0 5px rgba(0, 152, 121, 0.5);
+}
+
+/* Style pour les options */
+#sort-location option {
+    padding: 5px;
+}
+
+
 #photo-container {
     display: grid;
     grid-template-columns: repeat(5, 1fr); 
