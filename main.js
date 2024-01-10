@@ -20,6 +20,7 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
     .then(response => response.json())
     .then(data => {
         lakeData = data; // Stockez les données chargées ici
+        console.log(lakeData)
         map.on('click', function(e) {
             var features = map.queryRenderedFeatures(e.point, {
                 layers: ['markers']
