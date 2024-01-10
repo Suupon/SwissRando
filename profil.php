@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="profil_style.css">
     <link rel="stylesheet" href="accueil_css.css">
+    
         <script>
         function demanderDeconnexion() {
             var confirmation = confirm("Voulez-vous vraiment vous déconnecter ?");
@@ -20,7 +21,7 @@
         <img src="images/bannière.png" alt="Bannière">
     
         <div id="profil"> 
-            
+<!---------------------------- Bouton Déconnexion  ------------------------------->            
             <?php
             session_start();
             if (isset($_SESSION['email'])) {
@@ -32,7 +33,7 @@
         </div>
 
     </div>
-
+<!---------------------------- Récuperer les infos de la BDD table 'data'  ------------------------------->
     <div id="information"> 
     <?php
         if (isset($_SESSION['email'])) {
@@ -40,7 +41,6 @@
             echo '<p>Nom : ' . $_SESSION['nom'] . '</p><br>';
             echo '<p>Prénom : ' . $_SESSION['prenom'] . '</p><br>';
             echo '<p>Email : ' . $_SESSION['email'] . '</p><br>';
-            // Vous pouvez ajouter d'autres informations du profil si nécessaire
         } else {
             echo '<p> Connectez-vous pour afficher le profil.</p>';
         }
@@ -48,6 +48,7 @@
     </div>
 
 </body>
+<!---------------------------- FOOTER  ------------------------------->
 <footer>
             <div class="contenu">
                 <div id="logo">
@@ -92,4 +93,5 @@
                 <p>©2023 Tous Droits Réservés</p>
             </div>
         </footer>
+    <!---------------------------- FIN FOOTER  ------------------------------->
 </html>

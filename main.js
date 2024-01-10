@@ -16,10 +16,10 @@ window.onload=  map = new mapboxgl.Map({
 var coordinates = []; // Liste des coordonnées des points cliqués
 
 // Charger les données GeoJSON et ajouter des marqueurs
-fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
+fetch('lacs.json') 
     .then(response => response.json())
     .then(data => {
-        lakeData = data; // Stockez les données chargées ici
+        lakeData = data; 
         console.log(lakeData)
         map.on('click', function(e) {
             var features = map.queryRenderedFeatures(e.point, {
@@ -137,7 +137,7 @@ fetch('lacs.json') // Remplacer par le chemin réel du fichier GeoJSON
             
             map.on('mouseleave', 'markers', function() {
                 map.getCanvas().style.cursor = '';
-                popup.remove(); // This will remove the popup when the mouse leaves the marker
+                popup.remove(); 
             });
         });
         

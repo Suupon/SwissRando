@@ -14,33 +14,33 @@ body {
 /*CSS Du tabs*/
 
 #tabs .ui-tabs-nav {
-    background: #009879; /* Couleur de fond pour les onglets */
-    border-bottom: 4px solid #00795f; /* Bordure plus foncée pour le bas */
+    background: #009879; 
+    border-bottom: 4px solid #00795f; 
 }
 
 #tabs .ui-tabs-tab {
-    border-radius: 5px 5px 0 0; /* Bordures arrondies pour les onglets */
+    border-radius: 5px 5px 0 0; 
 }
 
 #tabs .ui-tabs-tab a {
-    padding: 10px; /* Espace autour du texte dans les onglets */
+    padding: 10px; 
 }
 
 #tabs .ui-tabs-panel {
  
-    background: #E8E8E8; /* Fond blanc pour le contenu */
-    padding: 20px; /* Espace intérieur pour le contenu */
+    background: #E8E8E8; 
+    padding: 20px; 
 }
 
 
 #tabs .ui-tabs-nav li.ui-tabs-active {
-    background-color: #005E4C; /* La même couleur de fond que les autres onglets */
+    background-color: #005E4C; 
     border: 1px solid black;
 }
 
 #tabs .ui-tabs-nav li.ui-tabs-active a,
 #tabs .ui-tabs-nav li.ui-tabs-active a:hover {
-    color: white; /* La même couleur de texte que les autres onglets */
+    color: white; 
 }
 
 #tabs{
@@ -98,20 +98,20 @@ body {
 
 
 h3 {
-    margin-left: 10%; /* Déplacer légèrement vers la droite */
-    margin-top: 10px; /* Un peu plus en bas */
-    color: #009879; /* Couleur similaire à celle de votre thème */
-    font-size: 1.5em; /* Taille de police plus grande pour le titre */
+    margin-left: 10%; 
+    margin-top: 10px; 
+    color: #009879; 
+    font-size: 1.5em; 
 }
 
 .styled-table {
     border-radius: 5px;
     border-collapse: separate;
     border-spacing: 0;
-    width: 90%; /* Ajustez la largeur selon vos besoins */
-    max-width: 1260px; /* Ajustez la largeur maximale selon vos besoins */
+    width: 90%; 
+    max-width: 1260px; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin: 20px auto; /* Centrer le tableau */
+    margin: 20px auto; 
     margin-bottom: 50px;
 }
 
@@ -126,9 +126,9 @@ h3 {
     font-size: 16px;
 }
 
-.styled-table td:nth-child(2) { /* Remplacer 3 par l'index de la colonne de description */
+.styled-table td:nth-child(2) { 
     text-align: justify;
-    padding: 10px; /* Ajustez au besoin */
+    padding: 10px; 
 }
 
 .styled-table tr {
@@ -290,19 +290,19 @@ label {
     width: 200px; 
 }
 
-/* Style au survol */
+
 #sort-location:hover {
     border-color: #009879;
 }
 
-/* Style au focus */
+
 #sort-location:focus {
     outline: none;
     border-color: #009879;
     box-shadow: 0 0 5px rgba(0, 152, 121, 0.5);
 }
 
-/* Style pour les options */
+
 #sort-location option {
     padding: 5px;
 }

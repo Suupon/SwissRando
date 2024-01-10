@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (tableHtml) {
         var container = document.getElementById('tabs-2');
-        container.innerHTML = ''; // Nettoyer le contenu existant
-        container.innerHTML = tableHtml; // Ajouter les itinéraires
+        container.innerHTML = ''; 
+        container.innerHTML = tableHtml; 
 
         // Ajouter un en-tête ou un titre pour chaque itinéraire
         var tables = container.querySelectorAll('table');
@@ -37,7 +37,7 @@ var reinit = document.querySelector("#reinit");
 
 });
     
-    var submitButton = document.getElementById('submit-btn'); // Assurez-vous que cet ID correspond à votre bouton
+    var submitButton = document.getElementById('submit-btn'); 
 
     submitButton.addEventListener('click', function submitratings() {
         // Vérification que toutes les cases sont remplies
@@ -52,7 +52,7 @@ var reinit = document.querySelector("#reinit");
     
         if (!allFilled) {
             alert("Veuillez remplir toutes les notes avant de soumettre.");
-            return; // Arrête l'exécution de la fonction
+            return; 
         }
     
         var ratings = [];
@@ -60,13 +60,13 @@ var reinit = document.querySelector("#reinit");
         var rows = document.querySelectorAll('#' + tableId + ' tr');
     
         rows.forEach((row, index) => {
-            if (index > 0) { // Ignorer l'en-tête du tableau
+            if (index > 0) { 
                 var lakeName = row.cells[1].innerText.trim();
                 var inputElement = row.cells[2].querySelector('input');
                 if (inputElement) {
                     var rating = parseInt(inputElement.value, 10);
                     ratings.push({ lakeName: lakeName, note: rating });
-                    row.cells[2].innerHTML = `<span>${rating}</span>`; // Remplacer l'input par un span
+                    row.cells[2].innerHTML = `<span>${rating}</span>`; 
                 }
             }
         });
