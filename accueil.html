@@ -86,12 +86,18 @@
 
     <!-- ONGLET Profil -->
     <div id="tab">
-        <select id="sortCriteria">
-            <option value="name">Nom</option>
-            <option value="note">Note</option>
-            <option value="superficie">Superficie</option>
-            <option value="Nbnotes">Nombre de visites</option>
-        </select>
+        <div>
+            <select id="sortCriteria">
+                <option value="name">Nom</option>
+                <option value="note">Note</option>
+                <option value="superficie">Superficie</option>
+                <option value="Nbnotes">Nombre de visites</option>
+            </select>
+            <select id="sortOrder">
+                <option value="asc">Tri Croissant</option>
+                <option value="desc">Tri Décroissant</option>
+            </select>
+        </div>
         
         <table id="lakeTable" class="styled-table">
             <thead>
@@ -107,48 +113,63 @@
                 <!-- Les lignes du tableau seront ajoutées ici par JavaScript -->
             </tbody>
         </table>
+        
+        </table>
         <script>
-                document.getElementById("sortCriteria").addEventListener("change", sortTable);
+            let features; // Variable globale pour stocker les données des lacs
+        
+            function loadTableData(features) {
+                const tbody = document.getElementById('tableBody');
+                tbody.innerHTML = '';
+        
+                features.forEach(feature => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${feature.properties.name}</td>
+                        <td>${feature.properties.description}</td>
+                        <td>${feature.properties.note}</td>
+                        <td>${feature.properties.Nbnotes}</td>
+                        <td>${feature.properties.superficie}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+        
+            function sortTable() {
+            const sortCriteria = document.getElementById("sortCriteria").value;
+            const sortOrder = document.getElementById("sortOrder").value;
+            const ascending = sortOrder === 'asc';
 
-    function loadTableData(features) {
-        const tbody = document.getElementById('tableBody');
-        tbody.innerHTML = '';
+            features.sort((a, b) => {
+                if (sortCriteria === 'name') {
+                    return ascending ?
+                        a.properties[sortCriteria].localeCompare(b.properties[sortCriteria]) :
+                        b.properties[sortCriteria].localeCompare(a.properties[sortCriteria]);
+                } else {
+                    return ascending ?
+                        a.properties[sortCriteria] - b.properties[sortCriteria] :
+                        b.properties[sortCriteria] - a.properties[sortCriteria];
+                }
+            });
 
-        features.forEach(feature => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${feature.properties.name}</td>
-                <td>${feature.properties.description}</td>
-                <td>${feature.properties.note}</td>
-                <td>${feature.properties.Nbnotes}</td>
-                <td>${feature.properties.superficie}</td>
-            `;
-            tbody.appendChild(row);
-        });
-    }
+            loadTableData(features);
+        }
 
-    function sortTable() {
-        const sortCriteria = document.getElementById("sortCriteria").value;
-        const sortedFeatures = features.sort((a, b) => {
-        if (a.properties[sortCriteria] < b.properties[sortCriteria]) return -1;
-        if (a.properties[sortCriteria] > b.properties[sortCriteria]) return 1;
-        return 0;
-    });
+        // Écouteur d'événement pour les sélections de tri
+        document.getElementById("sortCriteria").addEventListener("change", sortTable);
+        document.getElementById("sortOrder").addEventListener("change", sortTable);
 
-        loadTableData(sortedFeatures);
-    }
-
-// Chargement des données JSON depuis lacs.json
-fetch('lacs.json')
-    .then(response => response.json())
-    .then(data => {
-        features = data.features;
-        loadTableData(features);
-    })
-    .catch(error => console.error('Erreur de chargement du fichier JSON:', error));
-
+        // Chargement des données JSON depuis lacs.json
+        fetch('lacs.json')
+            .then(response => response.json())
+            .then(data => {
+                features = data.features;
+                loadTableData(features);
+            })
+            .catch(error => console.error('Erreur de chargement du fichier JSON:', error));
 
         </script>
+        
         
     </div>
 

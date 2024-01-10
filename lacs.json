@@ -1,28 +1,216 @@
 {
     "type": "FeatureCollection",
     "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [6.650885500988667, 46.78557982395325]
+            },
+            "properties": {
+              "name": "Lac de Neuchatel",
+              "description": "Le lac de Neuchâtel est le plus grand lac entièrement suisse. Sa surface est de 217,8 km². Il fait partie du Pays des Trois-Lacs et sa rive orientale est située sur la frontière linguistique français-allemand et borde le Seeland.",
+              "imageUrl": "images/imagelacs/Lac_Neuchatel.jpeg",
+              "note": 4.42,
+              "Nbnotes": 52,
+              "superficie": "217.8",
+              "total": 230
+            },
+            "id": "marker_1703516979895"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [6.46142308347358, 46.47885315345897]
+            },
+            "properties": {
+              "name": "Lac Leman",
+              "description": "Le lac Léman est un lac en forme de croissant par les Alpes. Genève, la ville suisse à son extrémité sud, est un centre diplomatique qui abrite des magasins de luxe et une vieille ville pavée.",
+              "imageUrl": "images/imagelacs/Lac_Leman.jpeg",
+              "note": 4.58,
+              "Nbnotes": 61,
+              "superficie": "88.66",
+              "total": 279
+            },
+            "id": "marker_1703517049257"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [7.150745972647154, 47.04775813535903]
+            },
+            "properties": {
+              "name": "Bieler See",
+              "description": "Le lac de Bienne est l'un des trois lacs au pied de la chaîne du Jura. Il se situe dans le canton de Berne en Suisse. Le canton de Neuchâtel le borde également à son extrémité ouest",
+              "imageUrl": "images/imagelacs/Bielersee.jpeg",
+              "note": 2.53,
+              "Nbnotes": 28,
+              "superficie": "88.66",
+              "total": 71
+            },
+            "id": "marker_1703517076522"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [7.037389654860165, 46.92452400796469]
+            },
+            "properties": {
+              "name": "Lac de Morat",
+              "description": "Le lac de Morat, nom officiel, est situé au pied du mont Vully, entre les cantons de Fribourg et Vaud, en Suisse. Il est le plus petit des lacs du Pays des Trois-Lacs, avec 22,8 km². Il tient son nom de la ville de Morat, située sur sa rive orientale.",
+              "imageUrl": "images/imagelacs/Lac_Morat.jpeg",
+              "note": 3.26,
+              "Nbnotes": 14,
+              "superficie": "22.8",
+              "total": 46
+            },
+            "id": "marker_1703517101134"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [7.10471565073206, 46.712808212783806]
+            },
+            "properties": {
+              "name": "Lac de la Gruyère",
+              "description": "Le lac de la Gruyère se trouve dans le canton de Fribourg entre les villes de Bulle et de Fribourg. Avec une longueur de 13,5 km, c'est le plus important lac artificiel de plaine de Suisse. Il possède une île : l'Île d'Ogoz3. où subsistent quelques vestiges antérieurs à la construction du barrage de Rossens",
+              "imageUrl": "images/imagelacs/Lac_Gruyère.jpeg",
+              "note": 4.87,
+              "Nbnotes": 17,
+              "superficie": "13.5",
+              "total": 83
+            },
+            "id": "marker_1703517237773"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [7.904568409273, 46.70474026089008]
+            },
+            "properties": {
+              "name": "Brienzer See",
+              "description": "Le lac de Brienz est un lac au nord des Alpes suisses, dans le canton de Berne en Suisse. Il mesure approximativement quinze kilomètres de long et deux kilomètres et demi de large. Le lac ne présente presque aucune zone peu profonde. C'est même le lac le plus profond du canton.",
+              "imageUrl": "images/imagelacs/Brienzersee.jpeg",
+              "note": 4.52,
+              "Nbnotes": 42,
+              "superficie": "88.66",
+              "total": 190
+            },
+            "id": "marker_1703517261426"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [8.727635206634208, 46.14175890577424]
+            },
+            "properties": {
+              "name": "Lago Maggiore",
+              "description": "Le lac Majeur est un lac préalpin italo-suisse de 212 km² et 65 km de longueur, à environ 50 km au nord-ouest de Milan, à cheval sur le Piémont, la Lombardie et le canton du Tessin. Haut lieu touristique suisse-italien, il est baptisé Majeur car il est un des lacs les plus importants de la région.",
+              "imageUrl": "images/imagelacs/Lac_Maggiore.jpeg",
+              "note": 1.22,
+              "Nbnotes": 3,
+              "superficie": "88.66",
+              "total": 4
+            },
+            "id": "marker_1703517305540"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [8.228096184427383, 46.8667223747606]
+            },
+            "properties": {
+              "name": "Sarnersee",
+              "description": "Dans une vallée creusée par les glaciers, le lac de Sarnen formait, après la dernière ère glaciaire, une surface d'eau continue avec le lac des Quatre-Cantons. Entre temps, des cônes de déjections accumulés par les alluvions fluviales l'ont transformé en un lac indépendant.",
+              "imageUrl": "images/imagelacs/Sarnersee.jpeg",
+              "note": 1.13,
+              "Nbnotes": 83,
+              "superficie": "88.66",
+              "total": 95
+            },
+            "id": "marker_1703517724919"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [8.168950044423806, 46.803465125597334]
+            },
+            "properties": {
+              "name": "Lungerersee",
+              "description": "Le Lungerersee est un magnifique bassin naturel situé dans le canton d'Obwald. Le lac est accessible depuis le col du Brünig ou depuis Lucerne via la vallée de la Sanneraa. Le lac est connu pour être le paradis des pêcheurs et la rive sud abrite une station balnéaire et une école de voile",
+              "imageUrl": "images/imagelacs/Lugerersee.jpg",
+              "note": 1.15,
+              "Nbnotes": 95,
+              "superficie": "88.66",
+              "total": 107
+            },
+            "id": "marker_1703517744036"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [8.43020880508703, 47.031321536106745]
+            },
+            "properties": {
+              "name": "Vierwaldstattersee",
+              "description": "Le lac des Quatre-Cantons (en allemand : Vierwaldstättersee) est un lac glaciaire de Suisse centrale. Il mesure 38 km de long de l'embouchure au déversoir de la Reuss. Il est situé à 434 mètres d'altitude, s'étend sur 114 km2, et atteint une profondeur de 214 m",
+              "imageUrl": "images/imagelacs/Vierwaldstättersee.jpeg",
+              "note": 0.97,
+              "Nbnotes": 11,
+              "superficie": "88.66",
+              "total": 12
+            },
+            "id": "marker_1703517790321"
+          },
+          {
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [8.472131675771921, 47.14084371138279]
+            },
+            "properties": {
+              "name": "Zuger See",
+              "description": "Le lac de Zoug (Zugersee en allemand) est un lac en Suisse, entre la limite des Alpes et le nord du lac des Quatre-Cantons. Il s'étire sur une superficie de 38 km2. Il a une profondeur moyenne de 83 m et sa profondeur maximale est de 200 mètres et il se situe à une altitude de 417 mètres.",
+              "imageUrl": "images/imagelacs/ZugerSee.jpg",
+              "note": 4.45,
+              "Nbnotes": 87,
+              "superficie": "38.3",
+              "total": 392
+            },
+            "id": "marker_1703517819011"
+          },
+          
       {
         "type": "Feature",
         "geometry": {
-          "type": "Point",
-          "coordinates": [6.650885500988667, 46.78557982395325]
+            "type": "Point",
+            "coordinates": [8.597027560355942, 47.12702371082411]
         },
         "properties": {
-          "name": "Lac de Neuchatel",
-          "description": "Le lac de Neuchâtel est le plus grand lac entièrement suisse. Sa surface est de 217,8 km². Il fait partie du Pays des Trois-Lacs et sa rive orientale est située sur la frontière linguistique français-allemand et borde le Seeland.",
-          "imageUrl": "images/imagelacs/Lac_Neuchatel.jpeg",
-          "note": 4.42,
-          "Nbnotes": "",
-          "superficie": "217.8",
-          "total": 0
+            "name": "Agerisee",
+            "description": "Le lac d'Ägeri (en allemand Ägerisee) est un lac de Suisse, dans le canton de Zoug, dans le bassin hydrologique de la Reuss, donc du Rhin, par l'Aar. La première mention du lac d'Aegeri date de 1315, lors de la bataille de Morgarten qui se déroule sur ses rives.",
+            "imageUrl": "images/imagelacs/Agersee.jpeg",
+            "note": 1.97,
+            "Nbnotes": 58,
+            "superficie": "7.3",
+            "total": 115
         },
-        "id": "marker_1703516979895"
-      },
-      {
+        "id": "marker_1703517836389"
+    },
+    {
         "type": "Feature",
         "geometry": {
-          "type": "Point",
-          "coordinates": [6.46142308347358, 46.47885315345897]
+            "type": "Point",
+            "coordinates": [8.786504501795372, 47.1327281225379]
         },
         "properties": {
           "name": "Lac Leman",
@@ -33,56 +221,158 @@
           "superficie": "582,1",
           "total": 0
         },
-        "id": "marker_1703517049257"
-      },
-      {
+        "id": "marker_1703517857309"
+    },
+    {
         "type": "Feature",
         "geometry": {
-          "type": "Point",
-          "coordinates": [7.150745972647154, 47.04775813535903]
+            "type": "Point",
+            "coordinates": [8.918770783976818, 47.10513587973063]
         },
         "properties": {
-          "name": "Bieler See",
-          "description": "Le lac de Bienne est l'un des trois lacs au pied de la chaîne du Jura. Il se situe dans le canton de Berne en Suisse. Le canton de Neuchâtel le borde également à son extrémité ouest",
-          "imageUrl": "images/imagelacs/Bielersee.jpeg",
-          "note": 2.53,
-          "Nbnotes": "",
-          "superficie": "39",
-          "total": 0
+            "name": "Wagitaler See",
+            "description": "Le Wägitalersee est un lac artificiel situé dans le Wägital, une vallée du canton de Schwyz. Le lac est entouré des montagnes Gross Aubrig, Fluebrig, Zindlenspitz, Brünnelistock et Bockmattli. Le vieux village d'Innerthal a été inondé en 1924 lors de la construction du barrage de Schräh.",
+            "imageUrl": "images/imagelacs/Watigalersee.jpeg",
+            "note": 3.07,
+            "Nbnotes": 91,
+            "superficie": "4.18",
+            "total": 281
         },
-        "id": "marker_1703517076522"
-      },
-      {
+        "id": "marker_1703517873566"
+    },
+    {
         "type": "Feature",
         "geometry": {
-          "type": "Point",
-          "coordinates": [7.037389654860165, 46.92452400796469]
+            "type": "Point",
+            "coordinates": [9.216308660158793, 47.130342652035154]
         },
         "properties": {
-          "name": "Lac de Morat",
-          "description": "Le lac de Morat, nom officiel, est situé au pied du mont Vully, entre les cantons de Fribourg et Vaud, en Suisse. Il est le plus petit des lacs du Pays des Trois-Lacs, avec 22,8 km². Il tient son nom de la ville de Morat, située sur sa rive orientale.",
-          "imageUrl": "images/imagelacs/Lac_Morat.jpeg",
-          "note": 3.26,
-          "Nbnotes": "",
-          "superficie": "22.8",
-          "total": 0
+            "name": "Walensee",
+            "description": "Le lac de Walenstadt (en allemand Walensee) est un lac suisse situé dans les cantons de Saint-Gall et de Glaris.",
+            "imageUrl": "images/imagelacs/Walensee.jpeg",
+            "note": 3.22,
+            "Nbnotes": 14,
+            "superficie": "24",
+            "total": 46
         },
-        "id": "marker_1703517101134"
-      },
-      {
+        "id": "marker_1703517913392"
+    },
+    {
         "type": "Feature",
         "geometry": {
-          "type": "Point",
-          "coordinates": [7.10471565073206, 46.712808212783806]
+            "type": "Point",
+            "coordinates": [8.638845007011161, 47.268511131145054]
         },
         "properties": {
-          "name": "Lac de la Gruyère",
-          "description": "Le lac de la Gruyère se trouve dans le canton de Fribourg entre les villes de Bulle et de Fribourg. Avec une longueur de 13,5 km, c'est le plus important lac artificiel de plaine de Suisse. Il possède une île : l'Île d'Ogoz3. où subsistent quelques vestiges antérieurs à la construction du barrage de Rossens",
-          "imageUrl": "images/imagelacs/Lac_Gruyère.jpeg",
-          "note": 4.87,
-          "Nbnotes": "",
-          "superficie": "13.5",
-          "total": 0
+            "name": "Zurichsee",
+            "description": "Le lac de Zurich (en allemand Zürichsee) est un lac qui se trouve au sud-est de la ville de Zurich. Il est bordé par les cantons de Zurich, Schwytz et Saint-Gall. A ne pas confondre avec le Lake Zurich",
+            "imageUrl": "images/imagelacs/Zurichsee.jpeg",
+            "note": 2.02,
+            "Nbnotes": 22,
+            "superficie": "88.66",
+            "total": 45
+        },
+        "id": "marker_1703517956501"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [8.21123241824274, 47.26911135368858]
+        },
+        "properties": {
+            "name": "Hallwiler See",
+            "description": "Le lac de Hallwil (en allemand : Hallwilersee) se trouve sur les territoires du canton d'Argovie et du canton de Lucerne. Son nom provient de la famille de Hallwyl et du village proche de Hallwil. Il se trouve à une altitude de 449 mètres et sa profondeur maximale est de 48 mètres.",
+            "imageUrl": "images/imagelacs/Hallwilersee.jpeg",
+            "note": 0.80,
+            "Nbnotes": 42,
+            "superficie": "10.3",
+            "total": 34
+        },
+        "id": "marker_1703517980367"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [8.246211334017355, 47.21115209332282]
+        },
+        "properties": {
+            "name": "Baldegger See",
+            "description": "Le lac de Baldegg (en allemand Baldeggersee), est un lac suisse, situé dans la partie lucernoise du plateau suisse. C'est une réserve naturelle et la propriété de Pro Natura depuis 2000.",
+            "imageUrl": "images/imagelacs/Baldegersee.jpg",
+            "note": 3.13,
+            "Nbnotes": 19,
+            "superficie": "5.2",
+            "total": 60
+        },
+        "id": "marker_1703517997590"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [8.6101321905947, 47.0352002082237]
+        },
+        "properties": {
+            "name": "Lauerzer See",
+            "description": "Le lac de Lauerz, appelé en allemand Lauerzersee est un lac situé dans le canton de Schwytz. Le nom du lac est celui de la localité homonyme",
+            "imageUrl": "images/imagelacs/Lauerzersee.jpeg",
+            "note": 3.26,
+            "Nbnotes": 29,
+            "superficie": "3.0",
+            "total": 95
+        },
+        "id": "marker_1703518181591"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [9.231529569968995, 47.63513492530896]
+        },
+        "properties": {
+            "name": "Bodensee",
+            "description": "Le lac de Constance (connu sous le nom de Bodensee en allemand) est un lac de 63 km de long en Europe centrale à la frontière de l'Allemagne, de l'Autriche et de la Suisse. Alimenté par le Rhin, il est constitué de deux parties reliées entre elles, l'Untersee (lac inférieur) et l'Obersee (lac supérieur).",
+            "imageUrl": "images/imagelacs/Baudersee.jpeg",
+            "note": 3.26,
+            "Nbnotes": 57,
+            "superficie": "536.0",
+            "total": 188
+        },
+        "id": "marker_1703518323481"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [8.782571311870623, 47.36241105026473]
+        },
+        "properties": {
+            "name": "Pfaffikersee",
+            "description": "Le lac de Pfäffikon, appelé en allemand Pfäffikersee est un lac Situé dans le canton de Zurich, près de la ville de Pfäffikon. Il a été créé lors de la dernière période glaciaire, lorsqu'une moraine a bloqué son écoulement vers le nord en direction de Winterthour.",
+            "imageUrl": "images/imagelacs/Pfaffikersee.jpeg",
+            "note": 1.46,
+            "Nbnotes": 81,
+            "superficie": "3.3",
+            "total": 119
+        },
+        "id": "marker_1703518356527"
+    },
+    {
+        "type": "Feature",
+        "geometry": {
+            "type": "Point",
+            "coordinates": [7.700621974794192, 46.71388254886642]
+        },
+        "properties": {
+            "name": "Thuner See",
+            "description": "Le lac de Thoune (Thunersee en allemand) est un lac alpin situé dans l'Oberland bernois en Suisse. Son nom lui vient de la ville de Thoune.",
+            "imageUrl": "images/imagelacs/Thunersee.jpeg",
+            "note": 2.57,
+            "Nbnotes": 12,
+            "superficie": "43.8",
+            "total": 31
         },
         "id": "marker_1703517237773"
       },
