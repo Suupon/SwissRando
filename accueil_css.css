@@ -370,14 +370,14 @@ footer #logo{
 
 footer .haute{
     display: flex;
-    width: 60%;
+    width: 50%;
     margin-right: 5%;
     margin-top: 6%;
 }
 
 footer .basse{
     display: flex;
-    width: 60%;
+    width: 50%;
     margin-top: 6%;
 }
 
@@ -390,13 +390,13 @@ footer h2{
 
     /**informations**/
 footer .informations{
-    width: 50%;;
+    width: 40%;;
 
 }
 
 footer .informations li {
     color: white;
-    margin-bottom: 10%;
+    margin-bottom: 6%;
     margin-left: 2.5%;
     list-style-type: ">"
 }
@@ -411,7 +411,8 @@ footer .informations li a{
      /**Adresse**/
 
      footer .adresse  {
-        width: 50%;
+        width: 40%;
+        margin-left: 20%;
     
     }
 
@@ -419,11 +420,11 @@ footer .informations li a{
     /**Autres**/
 
     footer .autres{
-        width: 50%;
+        width: 40%;
     }
 
     footer .autres li {
-        margin-bottom: 10%;
+        margin-bottom: 6%;
         list-style-type: none
     }
 
@@ -466,5 +467,5 @@ footer .informations li a{
     }
 
     footer .droit{
-        padding-left: 8.5%;
+        padding-left: 10%;
     }

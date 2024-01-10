@@ -51,7 +51,7 @@
 <footer>
             <div class="contenu">
                 <div id="logo">
-                    <img src="images/logo-vectorizer.png">
+                    <img src="images/logo.png">
                 </div>
         
                 <div class = haute>
