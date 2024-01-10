@@ -170,7 +170,7 @@ h3 {
     border-right: none;
 }
 
-#sortCriteria{
+.menud{
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -178,13 +178,13 @@ h3 {
     width: 200px; 
 }
 
-#sortCriteria:focus {
+.menud:focus {
     outline: none;
     border-color: #009879;
     box-shadow: 0 0 5px rgba(0, 152, 121, 0.5);
 }
 
-#sortCriteria:hover {
+.menud:hover {
     border-color: #009879;
 }
 /******************* FIN Tabs-2 ***************/
