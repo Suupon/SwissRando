@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
 var reinit = document.querySelector("#reinit");
 
     reinit.addEventListener('click', function(){
-    var confirmation = confirm("Voulez-vous vraiment =supprimer vos itinéraires ?");
+    var confirmation = confirm("Voulez-vous vraiment supprimer vos itinéraires ?");
     if (confirmation){
     localStorage.setItem('itineraryTable', '')
     localStorage.setItem('savedRatingsString', '')
