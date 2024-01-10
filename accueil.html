@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    
+
+    <!------------ Script tabs (Jquery) -------------->
     <script>
         $(function () {
             var tabs = $("#tabs").tabs();
@@ -56,6 +57,7 @@
 <body>
     <script src="main.js"></script>
 
+<!----------------------------Bannière ------------------------------->
     <div class="banner">
         <img src="images/bannière.png" alt="Bannière">
     
@@ -65,9 +67,9 @@
             </a> 
         </div>
     </div>
-    
+ <!----------------------------Fin Bannière ------------------------------->   
 
-    <!-- LES ONLGLETS -->
+    <!--------- LES ONLGLETS ---------->
     <div id="tabs">
     <ul>
       <li><a href="#tabs-1">Carte</a></li>
@@ -75,7 +77,7 @@
       <li><a href="#tabs-3">Galerie</a></li>
     </ul>
     
-    <!--ONLGET Carte-->
+    <!------------------------------------------ ONLGET Carte ------------------------------------------------------->
     <div id="tabs-1">
         <button class="custom-button btn-primary" id="save-route-btn" >Enregistrer Mon itinéraire</button>
         <button class="custom-button btn-primary" id="itineraires-btn" > Mes Itinéraires</button>
@@ -83,8 +85,10 @@
         <div id="map"></div>
         <script src="main.js"></script>
     </div>
+    <!------------------------------------------ FIN ONLGET Carte ------------------------------------------------------->
 
-    <!-- ONGLET Profil -->
+
+    <!------------------------------------ ONGLET Classement ---------------------------------------------->
     <div id="tab">
         <div>
             <select class="menud" id="sortCriteria">
@@ -110,13 +114,13 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Les lignes du tableau seront ajoutées ici par JavaScript -->
+                
             </tbody>
         </table>
         
         </table>
         <script>
-            let features; // Variable globale pour stocker les données des lacs
+            let features; 
         
             function loadTableData(features) {
                 const tbody = document.getElementById('tableBody');
@@ -155,7 +159,7 @@
             loadTableData(features);
         }
 
-        // Écouteur d'événement pour les sélections de tri
+        //les sélections de tri
         document.getElementById("sortCriteria").addEventListener("change", sortTable);
         document.getElementById("sortOrder").addEventListener("change", sortTable);
 
@@ -172,11 +176,12 @@
         
         
     </div>
-
+<!------------------------------------ FIN ONGLET Classement ---------------------------------------------->
     
 
-    <!--ONLGET Galerie-->
+    <!-------------------------------------ONLGET Galerie----------------------------------------------------->
     <div id="tabs-3">
+        <!-----Galerie Rotation ----->
         <div class="haut">            
             <div class="box">
                     <span style= "--i: 1;" > <img src="images/Greifensee.jpg"></span>
@@ -194,6 +199,7 @@
                 </div>
         </div>
 
+        <!-----Galerie Trie ----->
         <div id="album">
             <div id="sorting-options">
                 <label for="sort-location">Trier par lieu:</label>
@@ -207,7 +213,7 @@
                     <option value="neuchatel">Lac Neuchatel</option>
                     <option value="Zuger_See">Lac ZugerSee</option>
                     <option value="lac-sempachersee">Lac Sempachersee</option>
-                    <!-- Ajoutez d'autres options pour différents lieux -->
+                    
                 </select>
     
             </div>
@@ -240,10 +246,11 @@
                 <span class="photo" data-location="Zuger_See" data-date="2022-12-10"><img src="images/Zuger_See.jpg" alt="Zuger_See 1"></span>
                 <span class="photo" data-location="lac-sempachersee" data-date="2022-12-15"><img src="images/lac-sempachersee.jpg" alt="lac-sempachersee 1"></span>
                 
-                <!-- Ajoutez d'autres photos avec des lieux et des dates différentes -->
             </div>
-
-    <script>
+<!-------------------------------------------------------------- FIN ONLGET Galerie------------------------------------------------------------------------------------------------->
+   
+   <!-----SCRIPTP pour trier les photos par lieu ----->
+   <script>
         document.addEventListener('DOMContentLoaded', function () {
             var sortLocation = document.getElementById('sort-location');
 
@@ -266,11 +273,13 @@
             }
         });
     </script>
+
      </div>       
     </div>
     </div>
       
     </body>
+    <!---------------------------- Footer ------------------------------->
     <footer>
         <div class="contenu">
             <div id="logo">
@@ -315,5 +324,6 @@
             <p>©2023 Tous Droits Réservés</p>
         </div>
     </footer>
+    <!---------------------------- FIN  Footer ------------------------------->
 </html>
 
