@@ -170,7 +170,23 @@ h3 {
     border-right: none;
 }
 
+#sortCriteria{
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 200px; 
+}
 
+#sortCriteria:focus {
+    outline: none;
+    border-color: #009879;
+    box-shadow: 0 0 5px rgba(0, 152, 121, 0.5);
+}
+
+#sortCriteria:hover {
+    border-color: #009879;
+}
 /******************* FIN Tabs-2 ***************/
 
 
@@ -311,9 +327,9 @@ label {
 
 
 #photo-container span img {
-    width: 200px; /* Largeur fixe */
-    height: 200px; /* Hauteur fixe */
-    object-fit: cover; /* Redimensionne l'image tout en conservant les proportions */
+    width: 200px; 
+    height: 200px;
+    object-fit: cover; 
 }
 /******************* FIN Tabs-3***************/
 

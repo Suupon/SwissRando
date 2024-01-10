@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="profil_css.css">
+    <link rel="stylesheet" href="profil_style.css">
     <link rel="stylesheet" href="accueil_css.css">
         <script>
         function demanderDeconnexion() {
@@ -20,13 +20,12 @@
         <img src="images/bannière.png" alt="Bannière">
     
         <div id="profil"> 
-            <a href="accueil.html"><u> Retour Page d'Accueil >> </u></a>
             
             <?php
             session_start();
             if (isset($_SESSION['email'])) {
                 echo '<div id="deconnexion">';
-                echo '<button class="btn-primary" href="#" onclick="demanderDeconnexion()">Se Déconnecter</button>';
+                echo '<button class="btn-primary" id="deco"href="#" onclick="demanderDeconnexion()">Se Déconnecter</button>';
                 echo '</div>';
             }
             ?>
