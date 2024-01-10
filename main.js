@@ -299,7 +299,7 @@ function updateRoute(segment) {
     
     if (itinerary.length > 0) {
         var tableId = 'table_' + Date.now() + '_' + tableCounter++; // Créer un identifiant unique
-        var tableHtml = `<table id="${tableId}"><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>`;
+        var tableHtml = `<table id="${tableId}" class="styled-table"><tr><th>Etapes</th><th>Nom du Lac</th><th>Note</th></tr>`;
 
         itinerary.forEach((step, index) => {
             tableHtml += `<tr><td>${index+1}</td><td>${step.lakeName}</td><td><input type='number' min='1' max='5' /></td></tr>`;
@@ -333,7 +333,7 @@ function updateRoute(segment) {
 
   
  
-    // Soumission des notes
+    
     
   
 
@@ -341,7 +341,7 @@ function updateRoute(segment) {
     document.getElementById('save-route-btn').addEventListener('click', saveRoute);
         
 
-    
+    //Deconexion
 
         
             function demanderDeconnexion() {
@@ -352,4 +352,6 @@ function updateRoute(segment) {
                 }
             }
       
-    
+    // Trie tableau lac
+
+   

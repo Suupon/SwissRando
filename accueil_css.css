@@ -94,62 +94,72 @@ body {
 /******************* FIN Tabs-1 ***************/
 
 
-/******************* Tabs-2 ***************/
-#tabs-2 table {
+/******************* Tableaux ***************/
+
+
+h3 {
+    margin-left: 20%; /* Déplacer légèrement vers la droite */
+    margin-top: 10px; /* Un peu plus en bas */
+    color: #009879; /* Couleur similaire à celle de votre thème */
+    font-size: 1.5em; /* Taille de police plus grande pour le titre */
+}
+
+.styled-table {
     border-radius: 5px;
     border-collapse: separate;
     border-spacing: 0;
     width: 90%; /* Ajustez la largeur selon vos besoins */
-    max-width: 1060px; /* Ajustez la largeur maximale selon vos besoins */
+    max-width: 1260px; /* Ajustez la largeur maximale selon vos besoins */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin: 20px auto; /* Centrer le tableau */
     margin-bottom: 50px;
 }
 
-#tabs-2 th, #tabs-2 td {
+.styled-table th, .styled-table td {
     padding: 12px 15px;
     text-align: left;
     font-size: 16px;
 }
 
-#tabs-2 tr {
+.styled-table tr {
     border-bottom: 1px solid #dddddd;
 }
 
-#tabs-2 th {
+.styled-table th {
     background-color: #009879;
     color: white;
     border-bottom: none;
 }
 
-#tabs-2 td {
+.styled-table td {
     background-color: #f3f3f3;
 }
 
-#tabs-2 tr:nth-child(even) td {
+.styled-table tr:nth-child(even) td {
     background-color: #ffffff;
 }
 
-#tabs-2 tr:nth-child(1) {
+.styled-table tr:nth-child(1) {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
 
-#tabs-2 tr:last-child td:first-child {
+.styled-table tr:last-child td:first-child {
     border-bottom-left-radius: 10px;
 }
 
-#tabs-2 tr:last-child td:last-child {
+.styled-table tr:last-child td:last-child {
     border-bottom-right-radius: 10px;
 }
 
-#tabs-2 td:first-child, #tabs-2 th:first-child {
+.styled-table td:first-child, .styled-table th:first-child {
     border-left: none;
 }
 
-#tabs-2 td:last-child, #tabs-2 th:last-child {
+.styled-table td:last-child, .styled-table th:last-child {
     border-right: none;
 }
+
 
 /******************* FIN Tabs-2 ***************/
 

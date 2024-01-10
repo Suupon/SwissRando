@@ -86,8 +86,69 @@
 
     <!-- ONGLET Profil -->
     <div id="tab">
-        <button class=" custom-button btn-primary" id="submit-btn">Soumettre les Notes</button>
-        <script src="note.js"></script>
+        <select id="sortCriteria">
+            <option value="name">Nom</option>
+            <option value="note">Note</option>
+            <option value="superficie">Superficie</option>
+            <option value="Nbnotes">Nombre de visites</option>
+        </select>
+        
+        <table id="lakeTable" class="styled-table">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Description</th>
+                    <th>Note</th>
+                    <th>Nombre de visites</th>
+                    <th>Superficie</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Les lignes du tableau seront ajoutées ici par JavaScript -->
+            </tbody>
+        </table>
+        <script>
+                document.getElementById("sortCriteria").addEventListener("change", sortTable);
+
+    function loadTableData(features) {
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+
+        features.forEach(feature => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${feature.properties.name}</td>
+                <td>${feature.properties.description}</td>
+                <td>${feature.properties.note}</td>
+                <td>${feature.properties.Nbnotes}</td>
+                <td>${feature.properties.superficie}</td>
+            `;
+            tbody.appendChild(row);
+        });
+    }
+
+    function sortTable() {
+        const sortCriteria = document.getElementById("sortCriteria").value;
+        const sortedFeatures = features.sort((a, b) => {
+        if (a.properties[sortCriteria] < b.properties[sortCriteria]) return -1;
+        if (a.properties[sortCriteria] > b.properties[sortCriteria]) return 1;
+        return 0;
+    });
+
+        loadTableData(sortedFeatures);
+    }
+
+// Chargement des données JSON depuis lacs.json
+fetch('lacs.json')
+    .then(response => response.json())
+    .then(data => {
+        features = data.features;
+        loadTableData(features);
+    })
+    .catch(error => console.error('Erreur de chargement du fichier JSON:', error));
+
+
+        </script>
         
     </div>
 
