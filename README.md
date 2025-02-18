@@ -105,9 +105,8 @@ if(isset($_POST['login'])) {
 
 ---
 
-## 👨‍💻 Auteur  
-
-- **[Ton Nom]** - [GitHub](https://github.com/ton-utilisateur)  
+## 👨‍💻 Auteur
+- **Aymen** - [Ton GitHub](https://github.com/Suupon)
 
 ---
 
